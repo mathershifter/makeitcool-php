@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry id="{@id}">
+    <refnamediv>
+        <refname>User Guide for Image</refname>
+        <refpurpose></refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <author>
+            Jesse R. Mather
+            <authorblurb>
+                {@link mailto:jrmather@gmail.com jrmather@gmail.com}
+            </authorblurb>
+        </author>
+    </refsynopsisdiv>
+    {@toc}
+    <refsect1 id="{@id intro}">
+        <title>Introduction</title>
+        <para>
+        A simple image editor
+        </para>
+    </refsect1>
+    
+    <refsect1 id="{@id basic}">
+        <title>Basic Usage</title>
+        <para></para>
+        <programlisting role="php">
+&lt;?php
+require 'Mic/Image.php';
+
+// load the source image
+$image = Mic_Image::factory('ali.jpeg');
+
+// resize the image, in memory
+$image->resize(300, 300);
+
+// rotate the image, in memory
+$image->rotate(90);
+
+// save it to a new file
+$image->save('ali.new.jpeg');
+
+// or... save it as a png
+$image->save('ali.new.png');
+
+// or... display it
+header('Content-type: ' . $image->mimeType);
+$image->display();
+        </programlisting>
+    </refsect1>
+    <refsect1 id="{@id sample}">
+        <title>Simple Script</title>
+        <para>A Simple script that uses this library</para>
+        <programlisting role="php">    
+#!/opt/webstack/bin/php
+&lt;?php
+/**
+ * Simple image copier, rotator, and resizer 
+ * 
+ * Usage: image.php &lt;source image&gt; &lt;dest image&gt; &lt;width&gt; &lt;height&gt; &lt;degrees&gt;
+ */
+require 'include.php';
+require 'Mic/Image.php';
+
+// die early if not enough arguments
+if ($argc &lt; 3) {
+    echo "No image given\n";
+    echo "Usage: " . basename($argv[0]) . " &lt;source image&gt; &lt;dest image&gt; &lt;width&gt; &lt;height&gt; &lt;degrees&gt;\n";
+    die();
+}
+
+$source_image = $argv[1];
+$dest_image   = $argv[2];
+$degrees      = isset($argv[3]) ? $argv[3] : 0;
+$width        = isset($argv[4]) ? $argv[4] : false;
+$height       = isset($argv[5]) ? $argv[5] : false;
+
+// The factory method will automatically determine the class based on the extension
+$image = Mic_Image::factory($source_image);
+
+// resize if width and height are greater than zero
+if ($width  &gt; 0 && $height &gt; 0) {
+    $image-&gt;resize($width, $height);   
+}
+
+// rotate if degrees is non-zero
+if (is_numeric($degrees) && $degrees !== 0) {
+    $image-&gt;rotate($degrees);
+}
+
+// save the image
+$image-&gt;write($dest_image);
+        </programlisting>
+    </refsect1>
+</refentry>

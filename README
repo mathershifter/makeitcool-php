@@ -1,0 +1,47 @@
+SVN: $Id: README 1326 2010-12-09 23:33:54Z jmather5 $
+
+Welcome to the Mic Framework! 
+
+FEATURES CHANGES
+----------------
+
+* 2010-12-09, Mic_Proc, process control wrapper for proc_* functions
+
+* 2010-12-09, Mic_Cacti_ScriptServer, use a common Cacti Script Server plugin for sever
+  datasources
+
+* Mic_Cache_Time, a time window caching library.
+
+* Mic_Image, a limited image editor.  As of this writing it can resize,
+  rotate, and copy images between formats 
+
+IMPORTANT CHANGES
+-----------------
+
+* 
+
+SYSTEM REQUIREMENTS
+-------------------
+
+Mic Framework requires PHP 5.2.4 or later.
+
+Zend Framework 1.97 or later. (optional, but required for some features)
+
+INSTALLATION
+------------
+
+Please see INSTALL.txt.
+
+QUESTIONS AND FEEDBACK
+----------------------
+
+Email: nppipperformance@mathershifter.com
+
+ACKNOWLEDGEMENTS
+----------------
+
+Much of this code is based on the Zend Framework coding standards. 
+
+http://framework.zend.com/manual/en/coding-standard.html
+
+Some classes require it to be installed

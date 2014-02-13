@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php 
+require_once dirname(__FILE__) . '/../library/Mic.php';
+Mic::boot();
+
+$history_file = "{$_SERVER['HOME']}/.psh_history";
+
+function_exists('readline')
+    or die("Readline is required\n");
+
+readline_read_history($history_file);
+
+while (1) {
+    
+    $line = readline("\npsh> ");
+    
+    if ($line) {
+        readline_add_history($line);
+        
+        switch ($line) {
+            case 'quit':
+            case 'exit':
+                readline_write_history($history_file);
+                exit();
+            default:
+                eval($line);
+        }
+    }
+}

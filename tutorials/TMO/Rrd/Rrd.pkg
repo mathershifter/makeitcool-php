@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry id="{@id}">
+    <refnamediv>
+        <refname>User Guide for Rrd</refname>
+        <refpurpose></refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <author>
+            Jesse R. Mather
+            <authorblurb>
+                {@link mailto:jrmather@gmail.com jrmather@gmail.com}
+            </authorblurb>
+        </author>
+    </refsynopsisdiv>
+    {@toc}
+    <refsect1 id="{@id intro}">
+        <title>Introduction</title>
+        <para>
+        This package is intended to provide a common framework for reading rrd
+        data file from the local filesystem, tcp connection, or ssh (as of this
+        writing). Other access adapter can be added.  It works by opening
+        rrdtool with the trailing "-".  This resource is then available for
+        the life of the object.
+        </para>
+    </refsect1>
+    
+    <refsect1 id="{@id base}">
+        <title>Basic Usage</title>
+        <para></para>
+        <programlisting role="php">
+&lt;?php
+require 'Mic/Rrd.php';
+
+/* open rrdtool locally */
+$rrd = new Mic_Rrd('file:///path/to/rrdtool');
+
+/* send the fetch command */
+$rrd->fetch('/path/to/test.rrd', 'MAX', '--start -7200', '--end now');
+
+/* dump and export the response */
+print_r( $rrd->response()->cast() );
+
+/* run another command */
+$rrd->pwd();
+        </programlisting>
+    </refsect1>
+    
+    <refsect1 id="{@id base}">
+        <title>TCP (Rrdsrv) Usage</title>
+        <para></para>
+        <programlisting role="php">
+&lt;?php
+require 'Mic/Rrd.php';
+
+/* open rrdtool locally */
+$rrd = new Mic_Rrd('tcp://hostname:13900');
+
+/* send the fetch command */
+$rrd->fetch('/path/to/test.rrd', 'MAX', '--start -7200', '--end now');
+
+/* dump and export the response */
+print_r( $rrd->response()->cast() );
+        </programlisting>
+    </refsect1>
+    
+    <refsect1 id="{@id base}">
+        <title>SSH Usage</title>
+        <para></para>
+        <programlisting role="php">
+&lt;?php
+require 'Mic/Rrd.php';
+
+/* open rrdtool locally */
+$rrd = new Rrd('ssh://user@hostname/path/to/rrdtool',
+    array('ssh' => '-i path/to/identity');
+
+/* send the fetch command */
+$rrd->fetch('/path/to/test.rrd', 'MAX', '--start -7200', '--end now');
+
+/* dump and export the response */
+print_r( $rrd->response()->cast() );
+        </programlisting>
+    </refsect1>
+</refentry>
