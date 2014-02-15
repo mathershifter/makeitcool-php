@@ -15,7 +15,6 @@
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
- * @version   SVN: $Id: Abstract.php 1094 2010-06-22 00:10:35Z jmather5 $
  * @filesource
  */
 

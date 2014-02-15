@@ -15,7 +15,6 @@
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
- * @version   SVN: $Id: Rrd.php 1461 2011-02-02 19:17:33Z jmather5 $
  * @filesource
  */
 

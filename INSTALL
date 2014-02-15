@@ -1,21 +1,9 @@
-SVN: $Id: INSTALL 1326 2010-12-09 23:33:54Z jmather5 $
 
 INSTALLATION
 ------------
 
 Download the framework, extract it to the folder you would like to keep it in,
 and add the library directory to your PHP include_path.
-
-* Using a Subversion (SVN) client. 
-
-  Exporting is useful if you want to get a particular framework revision without the
-  .svn  directories as created in a working copy.
-
-  Checking out a working copy is necessary if you would like to directly contribute
-  to MC Framework; a working copy can be updated any time with svn update.
-
-  An externals definition is highly convenient for developers already using SVN to
-  manage their application working copies.
 
  [github repo URL here]
 

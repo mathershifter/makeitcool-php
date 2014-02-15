@@ -15,7 +15,6 @@
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
- * @version   SVN: $Id: Ssh.php 801 2010-03-24 22:55:35Z jmather5 $
  * @filesource
  */
 
