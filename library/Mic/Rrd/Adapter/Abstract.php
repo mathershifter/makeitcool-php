@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Rrd
+ * @category  MC
+ * @package   MC_Rrd
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * Mic_Rrd_Adapter_Abstract
+ * MC_Rrd_Adapter_Abstract
  *
- * @category   Mic
- * @package    Mic_Rrd
+ * @category   MC
+ * @package    MC_Rrd
  */
-abstract class Mic_Rrd_Adapter_Abstract
+abstract class MC_Rrd_Adapter_Abstract
 {
     /**
      * Reference to rrdtool resource
      *
-     * @var Mic_Rrd_Adapter_Abstract
+     * @var MC_Rrd_Adapter_Abstract
      */
     protected $handle;
     
@@ -78,7 +78,7 @@ abstract class Mic_Rrd_Adapter_Abstract
      *
      * @param string $command
      * @param array  $options
-     * @throws Mic_Rrd_Adapter_Exception
+     * @throws MC_Rrd_Adapter_Exception
      * @return array $response
      */
     public function read($command, $options=array())
@@ -89,8 +89,8 @@ abstract class Mic_Rrd_Adapter_Abstract
         
         // make sure pipes are valid
         if (!is_resource($pipes[0]) || !is_resource($pipes[1])) {
-            require_once 'Mic/Rrd/Adapter/Exception.php';
-            throw new Mic_Rrd_Adapter_Exception("Pipe is not a valid resource");
+            require_once 'MC/Rrd/Adapter/Exception.php';
+            throw new MC_Rrd_Adapter_Exception("Pipe is not a valid resource");
         }
         
         if (!empty($options)) {
@@ -111,8 +111,8 @@ abstract class Mic_Rrd_Adapter_Abstract
             
             // eject if an error occurs
             if (preg_match('/^ERROR\:\s+(.*)/', $line, $matches)) {
-                require_once 'Mic/Rrd/Adapter/Exception.php';
-                throw new Mic_Rrd_Adapter_Exception("RRD Error: {$matches[1]} in '$command'");
+                require_once 'MC/Rrd/Adapter/Exception.php';
+                throw new MC_Rrd_Adapter_Exception("RRD Error: {$matches[1]} in '$command'");
             }
             
             $response[] = $line;

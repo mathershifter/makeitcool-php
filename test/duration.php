@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-$duration = new Mic_Duration(@$_SERVER['argv'][1] ?: 86400);
+$duration = new MC_Duration(@$_SERVER['argv'][1] ?: 86400);
 
 print_r($duration);
 

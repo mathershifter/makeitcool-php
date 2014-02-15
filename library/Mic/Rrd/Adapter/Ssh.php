@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Rrd
+ * @category  MC
+ * @package   MC_Rrd
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,19 +20,19 @@
  */
 
 /**
- * @see Mic_Rrd_Adapter_Abstract
+ * @see MC_Rrd_Adapter_Abstract
  */
-require_once 'Mic/Rrd/Adapter/Abstract.php';
+require_once 'MC/Rrd/Adapter/Abstract.php';
 
 /**
- * Mic_Rrd_Adapter_Ssh
+ * MC_Rrd_Adapter_Ssh
  *
  * Adapter class for proc_open+ssh
  *
- * @category   Mic
- * @package    Mic_Rrd
+ * @category   MC
+ * @package    MC_Rrd
  */
-class Mic_Rrd_Adapter_Ssh extends Mic_Rrd_Adapter_Abstract
+class MC_Rrd_Adapter_Ssh extends MC_Rrd_Adapter_Abstract
 {
     private $_proc;
     
@@ -43,17 +43,17 @@ class Mic_Rrd_Adapter_Ssh extends Mic_Rrd_Adapter_Abstract
      *
      * @param string $rrdtool ssh://<user>@<host><path_to_rrdtool>
      * @param array  $options
-     * @throws Mic_Rrd_Adapter_Exception
+     * @throws MC_Rrd_Adapter_Exception
      */
     public function open($rrdtool, $options=array())
     {
         // make sure we are running rrdtool and not some other command
         if (!preg_match('/\/rrdtool$/', $rrdtool->path)) {
-            throw new Mic_Rrd_Adapter_Exception($rrdtool->path . " is not rrdtool");
+            throw new MC_Rrd_Adapter_Exception($rrdtool->path . " is not rrdtool");
         }
         
         if (!$rrdtool->host) {
-            throw new Mic_Rrd_Adapter_Exception("No host defined");
+            throw new MC_Rrd_Adapter_Exception("No host defined");
         }
                 
         $user = $rrdtool->user ? $rrdtool->user . '@' : ''; 
@@ -74,8 +74,8 @@ class Mic_Rrd_Adapter_Ssh extends Mic_Rrd_Adapter_Abstract
         stream_set_blocking($this->handle[2], 0);
         
         if ($errstr = stream_get_contents($this->handle[2])) {
-            require_once 'Mic/Rrd/Adapter/Exception.php';
-            throw new Mic_Rrd_Adapter_Exception("Failed while opening " .
+            require_once 'MC/Rrd/Adapter/Exception.php';
+            throw new MC_Rrd_Adapter_Exception("Failed while opening " .
                 "{$rrdtool->path}: {$errstr}");    
         }
     }

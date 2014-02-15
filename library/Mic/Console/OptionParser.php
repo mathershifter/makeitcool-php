@@ -8,7 +8,7 @@
  *
  * @author  Michael J. I. Jackson <mjijackson@gmail.com>
  */
-class Mic_Console_OptionParser
+class MC_Console_OptionParser
 {
 
     /**

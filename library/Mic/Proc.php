@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Proc
+ * @category  MC
+ * @package   MC_Proc
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,12 +20,12 @@
  */
 
 /**
- * Mic_Proc
+ * MC_Proc
  *
- * @category  Mic
- * @package   Mic_Proc
+ * @category  MC
+ * @package   MC_Proc
  */
-class Mic_Proc extends Mic_Object 
+class MC_Proc extends MC_Object 
 {
     /**
      * 
@@ -68,12 +68,12 @@ class Mic_Proc extends Mic_Object
         $this->_proc        = proc_open($command, array_values($this->_descriptors), $pipes, $cwd, $this->_env);
         
         if (!is_resource($this->_proc)) {
-            throw new Mic_Proc_Exception("Failed to create process");
+            throw new MC_Proc_Exception("Failed to create process");
         }
         
         foreach (array_keys($this->_descriptors) as $index=>$name) {
             if (isset($pipes[$index]) && is_resource($pipes[$index])) {
-                $this->_pipes[$name] = new Mic_Proc_Resource($pipes[$index]);    
+                $this->_pipes[$name] = new MC_Proc_Resource($pipes[$index]);    
             }
              
         }

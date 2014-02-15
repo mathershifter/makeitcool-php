@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Proc
+ * @category  MC
+ * @package   MC_Proc
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,12 +20,12 @@
  */
 
 /**
- * Mic_Directory
+ * MC_Directory
  *
- * @category  Mic
- * @package   Mic_Directory
+ * @category  MC
+ * @package   MC_Directory
  */
-class Mic_Directory extends Mic_Object
+class MC_Directory extends MC_Object
 {
     /**
      * 
@@ -61,14 +61,14 @@ class Mic_Directory extends Mic_Object
     {
         if (self::isDirectory($file)) {
             if (!$this->_resource = opendir($file)) {
-                throw new Mic_File_Exception("Failed to open directory '$file'");
+                throw new MC_File_Exception("Failed to open directory '$file'");
             }
             
             $this->path      = $file;
-            $this->realpath  = Mic_File::realpath($file);
-            $this->stat      = Mic_File::stat($file);
+            $this->realpath  = MC_File::realpath($file);
+            $this->stat      = MC_File::stat($file);
         } else {
-            throw new Mic_File_Exception("'$file' is not a directory");
+            throw new MC_File_Exception("'$file' is not a directory");
         }
     }
     
@@ -92,7 +92,7 @@ class Mic_Directory extends Mic_Object
      * 
      * @param   string $filter
      * @param   mixed  ...     callback and/or sort flags
-     * @return  Mic_Array
+     * @return  MC_Array
      */
     public function scan()
     {
@@ -114,7 +114,7 @@ class Mic_Directory extends Mic_Object
             }
         }
         
-        $files = new Mic_Array();
+        $files = new MC_Array();
         
         while (false !== ($file = readdir($this->_resource))) {
             if (S($file)->rmatch($filter)) {

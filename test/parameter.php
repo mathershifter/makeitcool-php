@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-print_r( Mic_Parameter::map() );
+print_r( MC_Parameter::map() );

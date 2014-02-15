@@ -29,10 +29,10 @@
         <para></para>
         <programlisting role="php">
 &lt;?php
-require 'Mic/Rrd.php';
+require 'MC/Rrd.php';
 
 /* open rrdtool locally */
-$rrd = new Mic_Rrd('file:///path/to/rrdtool');
+$rrd = new MC_Rrd('file:///path/to/rrdtool');
 
 /* send the fetch command */
 $rrd->fetch('/path/to/test.rrd', 'MAX', '--start -7200', '--end now');
@@ -50,10 +50,10 @@ $rrd->pwd();
         <para></para>
         <programlisting role="php">
 &lt;?php
-require 'Mic/Rrd.php';
+require 'MC/Rrd.php';
 
 /* open rrdtool locally */
-$rrd = new Mic_Rrd('tcp://hostname:13900');
+$rrd = new MC_Rrd('tcp://hostname:13900');
 
 /* send the fetch command */
 $rrd->fetch('/path/to/test.rrd', 'MAX', '--start -7200', '--end now');
@@ -68,7 +68,7 @@ print_r( $rrd->response()->cast() );
         <para></para>
         <programlisting role="php">
 &lt;?php
-require 'Mic/Rrd.php';
+require 'MC/Rrd.php';
 
 /* open rrdtool locally */
 $rrd = new Rrd('ssh://user@hostname/path/to/rrdtool',

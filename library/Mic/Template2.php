@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Template2
+ * @category  MC
+ * @package   MC_Template2
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * @see Mic_String
+ * @see MC_String
  */
-require_once 'Mic/String.php';
+require_once 'MC/String.php';
 
 /**
- * Mic_Template
+ * MC_Template
  *
- * @category  Mic
- * @package   Mic_Template
+ * @category  MC
+ * @package   MC_Template
  */
-class Mic_Template2 extends Mic_String
+class MC_Template2 extends MC_String
 {
     private $_paths;
     
@@ -41,8 +41,8 @@ class Mic_Template2 extends Mic_String
      */
     private function _find($path, $data)
     {
-        if (!$data instanceof Mic_Array) {
-            $data = new Mic_Array($data);
+        if (!$data instanceof MC_Array) {
+            $data = new MC_Array($data);
         }
         
         # first check for the path as a key
@@ -53,7 +53,7 @@ class Mic_Template2 extends Mic_String
         list($_root, $_path) = S($path)->split('.', 2);
         
         if (!$data->hasKey($_root)) {
-            throw new Mic_Template_Exception("Index '$_root' not found in data");
+            throw new MC_Template_Exception("Index '$_root' not found in data");
         }
             
         if ($_path) {
@@ -76,14 +76,14 @@ class Mic_Template2 extends Mic_String
         $template = array_shift($args);
         $this->_replacement = !empty($args) ? array_shift($args) : array();
         
-        if (Mic_File::exists($template)) {
+        if (MC_File::exists($template)) {
             if (!is_readable($template)) {
                 //
-                require_once 'Mic/Template/Exception.php';
-                throw new Mic_Template_Exception("Failed to read file: $file");
+                require_once 'MC/Template/Exception.php';
+                throw new MC_Template_Exception("Failed to read file: $file");
             }
             
-            $tempate = Mic_File::open($template)->read();
+            $tempate = MC_File::open($template)->read();
         }
         
         $this->_paths = $this->_getPaths($template);
@@ -101,7 +101,7 @@ class Mic_Template2 extends Mic_String
     
     public function replace()
     {
-        $replaced = new Mic_String("{$this}");
+        $replaced = new MC_String("{$this}");
         foreach ($this->_paths as $path) {
             
             try {
@@ -110,7 +110,7 @@ class Mic_Template2 extends Mic_String
                 $regex = "/\{" . addcslashes($path, "|:.+*?[^]($)<>-") . "\}/";
                 
                 $replaced = $replaced->replace($regex, $replacement);
-            } catch (Mic_Template_Exception $e) {
+            } catch (MC_Template_Exception $e) {
                 // pass
                 //echo $e->getMessage() . "\n";
             }

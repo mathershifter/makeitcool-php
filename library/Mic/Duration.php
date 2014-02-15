@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Duration
+ * @category  MC
+ * @package   MC_Duration
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
- * Mic_Duration
+ * MC_Duration
  *
- * @category  Mic
- * @package   Mic_Duration
+ * @category  MC
+ * @package   MC_Duration
  */
-class Mic_Duration extends Mic_Object
+class MC_Duration extends MC_Object
 {
 	// unit durations
     const YEAR   = 31536000; // (86400 * 365)
@@ -176,8 +176,8 @@ class Mic_Duration extends Mic_Object
         $parts     = array();
         
         if ($fuzziness < 1) {
-            require_once 'Mic/Duration/Exception.php';
-            throw new Mic_Duration_Exception("Funzziness must not be less " .
+            require_once 'MC/Duration/Exception.php';
+            throw new MC_Duration_Exception("Funzziness must not be less " .
                                              "than 1");
         }
         

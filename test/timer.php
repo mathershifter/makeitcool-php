@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-$timer = new Mic_Timer;
+$timer = new MC_Timer;
 $result = $timer->measure(function ($a, $b) {
     sleep(1);
     return "$a $b";

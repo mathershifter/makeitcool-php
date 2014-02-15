@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Rrd
+ * @category  MC
+ * @package   MC_Rrd
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,19 +20,19 @@
  */
 
 /**
- * Mic_Rrd_Adapter_Abstract
+ * MC_Rrd_Adapter_Abstract
  */
-require_once 'Mic/Rrd/Adapter/Abstract.php';
+require_once 'MC/Rrd/Adapter/Abstract.php';
 
 /**
- * Mic_Rrd_Adapter_File
+ * MC_Rrd_Adapter_File
  *
  * Adapter class for local rrdtool proc_open
  *
- * @category   Mic
- * @package    Mic_Rrd
+ * @category   MC
+ * @package    MC_Rrd
  */
-class Mic_Rrd_Adapter_File extends Mic_Rrd_Adapter_Abstract
+class MC_Rrd_Adapter_File extends MC_Rrd_Adapter_Abstract
 {
     private $proc;
     
@@ -41,7 +41,7 @@ class Mic_Rrd_Adapter_File extends Mic_Rrd_Adapter_Abstract
      *
      * @param string $rrdtool [file://]/usr/bin/rrdtool
      * @param array  $options
-     * @throws Mic_Rrd_Adapter_Exception
+     * @throws MC_Rrd_Adapter_Exception
      */
     public function open($rrdtool, $options=array())
     {
@@ -68,8 +68,8 @@ class Mic_Rrd_Adapter_File extends Mic_Rrd_Adapter_Abstract
         stream_set_blocking($this->handle[2], 0);
         
         if ($errstr = stream_get_contents($this->handle[2])) {
-            require_once 'Mic/Rrd/Adapter/Exception.php';
-            throw new Mic_Rrd_Adapter_Exception("Failed while opening {$rrdtool}: {$errstr}");    
+            require_once 'MC/Rrd/Adapter/Exception.php';
+            throw new MC_Rrd_Adapter_Exception("Failed while opening {$rrdtool}: {$errstr}");    
         }
     }
     

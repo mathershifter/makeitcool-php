@@ -33,14 +33,14 @@ PATH_PHPDOC=phpdoc
 #  * 
 #  * @var               string TITLE
 #  */
-TITLE="Mic Framework Documentation"
+TITLE="MC Framework Documentation"
 
 #/** 
 #  * name to use for the default package. If not specified, uses 'default'
 #  *
 #  * @var               string PACKAGES
 #  */
-PACKAGES="Mic"
+PACKAGES="MC"
 
 #/** 
 #  * name of a directory(s) to parse directory1,directory2

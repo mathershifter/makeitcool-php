@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Proc
+ * @category  MC
+ * @package   MC_Proc
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,12 +20,12 @@
  */
 
 /**
- * Mic_File
+ * MC_File
  *
- * @category  Mic
- * @package   Mic_File
+ * @category  MC
+ * @package   MC_File
  */
-class Mic_File extends Mic_Resource
+class MC_File extends MC_Resource
 {
     /**
      * 
@@ -70,7 +70,7 @@ class Mic_File extends Mic_Resource
         $resource = @fopen($file, $mode);
         
         if (!is_resource($resource)) {
-            throw new Mic_File_Exception("Failed to open file: $file");
+            throw new MC_File_Exception("Failed to open file: $file");
         }
         
         $this->basename  = self::basename($file);
@@ -163,7 +163,7 @@ class Mic_File extends Mic_Resource
     public static function permissions($file, $format='octal')
     {
         if (!self::exists($file)) {
-            throw new Mic_File_Exception("File '$file' does not exist.");
+            throw new MC_File_Exception("File '$file' does not exist.");
         }
         
         $perms = fileperms($file);
@@ -239,6 +239,6 @@ class Mic_File extends Mic_Resource
      */
     public static function stat($file)
     {
-         return new Mic_File_Stat($file);
+         return new MC_File_Stat($file);
     }
 }

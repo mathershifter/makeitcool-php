@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
 $template = "a.name: {a.name} , b.name: {b.name} testCamel: {testCamel} test_under {test_under} duplicate: {a.name}";
 
@@ -14,4 +14,4 @@ $replacements = array(
     'test_under' => 'under_test'
 );
 
-var_dump(Mic_Template2::process($template, $replacements));
+var_dump(MC_Template2::process($template, $replacements));

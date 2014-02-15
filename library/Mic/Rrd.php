@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Rrd
+ * @category  MC
+ * @package   MC_Rrd
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,19 +20,19 @@
  */
 
 /**
- * @see Mic_Loader
+ * @see MC_Loader
  */
-require_once 'Mic/Loader.php';
+require_once 'MC/Loader.php';
 
 /**
- * @see Mic_Object 
+ * @see MC_Object 
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
- * @see Mic_Array 
+ * @see MC_Array 
  */
-require_once 'Mic/Array.php';
+require_once 'MC/Array.php';
 
 /**
  * Rrd wrapper class
@@ -44,12 +44,12 @@ require_once 'Mic/Array.php';
  * {@link http://oss.oetiker.ch/rrdtool/doc/rrdtool.en.html website} for 
  * rrdtool specfic details.
  *
- * @tutorial Mic/Rrd/Rrd.pkg
+ * @tutorial MC/Rrd/Rrd.pkg
  *
- * @category  Mic
- * @package   Mic_Rrd
+ * @category  MC
+ * @package   MC_Rrd
  */
-class Mic_Rrd extends Mic_Object
+class MC_Rrd extends MC_Object
 {
     /**#@+
      * Error codes
@@ -71,7 +71,7 @@ class Mic_Rrd extends Mic_Object
     /**#@-*/
     
     /**
-     * Reference to Mic_Rrd_Adapter_* object
+     * Reference to MC_Rrd_Adapter_* object
      *
      * @access protected
      */
@@ -96,7 +96,7 @@ class Mic_Rrd extends Mic_Object
     private $_data = null;
     
     /**
-     * Create a new Mic_Rrd object.  If a uri is passed, open rrdtool immediately
+     * Create a new MC_Rrd object.  If a uri is passed, open rrdtool immediately
      *
      * @param string $uri     a valid URI
      * @param array  $options any options to pass to the open method
@@ -115,14 +115,14 @@ class Mic_Rrd extends Mic_Object
      * @param string $command the command
      * @param array  $args    parameters for rrdtool command
      * @throws Exception on error throws an Exception with an error code
-     * @return Mic_Rrd
+     * @return MC_Rrd
      */
     public function __call($command, $args=array())
     {
         try {
             if (!is_object($this->rrdtool)) {
-                require_once 'Mic/Rrd/Exception.php';
-                throw new Mic_Rrd_Exception("No connection to rrdtool", self::RRDTOOL_CLOSED_ERROR);
+                require_once 'MC/Rrd/Exception.php';
+                throw new MC_Rrd_Exception("No connection to rrdtool", self::RRDTOOL_CLOSED_ERROR);
             } else {
                 $response = $this->rrdtool->read($command, $args);
                 
@@ -133,7 +133,7 @@ class Mic_Rrd extends Mic_Object
                 $this->_storeResponse($response);
             } 
         } catch(Exception $e) {
-            throw new Mic_Rrd_Exception($e->getMessage(), self::RRDTOOL_CALL_ERROR);
+            throw new MC_Rrd_Exception($e->getMessage(), self::RRDTOOL_CALL_ERROR);
         }
         
         return $this;
@@ -142,20 +142,20 @@ class Mic_Rrd extends Mic_Object
     /**
      * Parse the rrdtool response
      *
-     * ... using a Mic_Rrd_Parser_* class
+     * ... using a MC_Rrd_Parser_* class
      *
      * @param $command
      * @param $response
      * @throws Exception on error throws an Exception with an error code
-     * @return Mic_Rrd
+     * @return MC_Rrd
      */
     private function _parse($command, $response)
     {
         $parserClass = join('_', array(__CLASS__, 'Parser', ucfirst($command)));
         
         try {
-            require_once 'Mic/Loader.php';
-            Mic_Loader::loadClass($parserClass);
+            require_once 'MC/Loader.php';
+            MC_Loader::loadClass($parserClass);
         } catch (Exception $e) {
             /* ignore error and return */
             return $response;
@@ -163,8 +163,8 @@ class Mic_Rrd extends Mic_Object
         
         // this is unexpected, throw an exception
         if (!method_exists($parserClass, 'parse')) {
-            require_once 'Mic/Rrd/Exception.php';
-            throw new Mic_Rrd_Exception("Expected $parserClass to define parse",
+            require_once 'MC/Rrd/Exception.php';
+            throw new MC_Rrd_Exception("Expected $parserClass to define parse",
                                         self::RRDTOOL_PARSE_ERROR); 
         }
         
@@ -185,7 +185,7 @@ class Mic_Rrd extends Mic_Object
      * @param string $command the command
      * @param array  $args    parameters for rrdtool command
      * @throws Exception on error throws an Exception with an error code
-     * @return Mic_Rrd
+     * @return MC_Rrd
      */
     public function open($uri, $options=array())
     {
@@ -194,25 +194,25 @@ class Mic_Rrd extends Mic_Object
             $uri .= "file://{$uri}";
         }
         
-        $parsedUri    = new Mic_Array(parse_url($uri));
-        $options      = new Mic_Array($options);
+        $parsedUri    = new MC_Array(parse_url($uri));
+        $options      = new MC_Array($options);
         $adapterClass = join('_', array(__CLASS__, 'Adapter', ucfirst($parsedUri->scheme)));
         
         /*
          * attempt to dynamically load the matching adapter
          */
         try {
-            Mic_Loader::loadClass($adapterClass);
+            MC_Loader::loadClass($adapterClass);
         } catch (Exception $e) {
-            require_once 'Mic/Rrd/Exception.php';
-            throw new Mic_Rrd_Exception("Failed to load adapter: {$parsedUri->scheme}", self::RRDTOOL_LOAD_ERROR);
+            require_once 'MC/Rrd/Exception.php';
+            throw new MC_Rrd_Exception("Failed to load adapter: {$parsedUri->scheme}", self::RRDTOOL_LOAD_ERROR);
         }
         
         try {
             $this->rrdtool = new $adapterClass($parsedUri, $options);
         } catch(Exception $e) {
-            require_once 'Mic/Rrd/Exception.php';
-            throw new Mic_Rrd_Exception($e->getMessage(), self::RRDTOOL_OPEN_ERROR);
+            require_once 'MC/Rrd/Exception.php';
+            throw new MC_Rrd_Exception($e->getMessage(), self::RRDTOOL_OPEN_ERROR);
         }
         
         return $this;    
@@ -223,7 +223,7 @@ class Mic_Rrd extends Mic_Object
      */
     private function _storeResponse($response)
     {
-        //$response = is_array($response) ? new Mic_Array($response) : $response;
+        //$response = is_array($response) ? new MC_Array($response) : $response;
         if (is_array($response)) {
             $response = A($response);
             
@@ -241,7 +241,7 @@ class Mic_Rrd extends Mic_Object
     
     protected function _setMetadata($data)
     {
-        $this->_metadata = is_array($data) ? new Mic_Array($data) : null;
+        $this->_metadata = is_array($data) ? new MC_Array($data) : null;
     }
     
     /**

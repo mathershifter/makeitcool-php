@@ -1,10 +1,10 @@
 <?php
 
 require_once(join(DIRECTORY_SEPARATOR, array(
-    dirname(__FILE__), '..' , '..', '..', 'library', 'Mic.php'
+    dirname(__FILE__), '..' , '..', '..', 'library', 'MC.php'
 )));
 
-Mic::boot();
+MC::boot();
 
 require_once 'PHPUnit/Framework.php';
 

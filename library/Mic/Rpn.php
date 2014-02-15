@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Rpn
+ * @category  MC
+ * @package   MC_Rpn
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,19 +20,19 @@
  */
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
- * Mic_Rpn
+ * MC_Rpn
  * 
  * RPN Caclulator
  *
- * @category  Mic
- * @package   Mic_Rpn
+ * @category  MC
+ * @package   MC_Rpn
  */
-class Mic_Rpn extends Mic_Object
+class MC_Rpn extends MC_Object
 {
     /**
      * Maps operators to their callback methods
@@ -82,14 +82,14 @@ class Mic_Rpn extends Mic_Object
     /**
      * Stores the RPN expression
      * 
-     * @var Mic_Ring
+     * @var MC_Ring
      */
     private $_expression;
     
     /**
      * Stores resaults of RPN expression
      * 
-     * @var Mic_Ring
+     * @var MC_Ring
      */
     private $_stack;
     
@@ -103,16 +103,16 @@ class Mic_Rpn extends Mic_Object
     protected function __construct($expression)
     {
         if (is_array($expression)) {
-            $this->_expression = new Mic_Array($expression);
+            $this->_expression = new MC_Array($expression);
         } elseif (is_scalar($expression)) {
             $this->_expression = S($expression)->rsplit('/\,|\s+/');
-        } elseif ($expression instanceof Mic_Array) {
+        } elseif ($expression instanceof MC_Array) {
             $this->_expression = $expression;
         } else {
-            throw new Mic_Array_Exception("Expresion must be an array, scalar, or Mic_Array."); 
+            throw new MC_Array_Exception("Expresion must be an array, scalar, or MC_Array."); 
         }
         
-        $this->_stack = new Mic_Array();
+        $this->_stack = new MC_Array();
     }
     
     public function dump()
@@ -150,26 +150,26 @@ class Mic_Rpn extends Mic_Object
                 $this->_stack->push($token);
             } elseif (is_string($token)) {
                 if (!array_key_exists("$token", $this->_operators)) {
-                    require_once 'Mic/Rpn/Exception.php';
-                    throw new Mic_Rpn_Exception("$token is not a valid token");
+                    require_once 'MC/Rpn/Exception.php';
+                    throw new MC_Rpn_Exception("$token is not a valid token");
                 }
                 
                 // catch failed operations and push null onto the stack
                 try {
                     $this->{$this->_operators["$token"]}();    
-                } catch (Mic_Rpn_Exception $e) {
+                } catch (MC_Rpn_Exception $e) {
                     $this->_stack->push(null);
                 }
             } else {
-                require_once 'Mic/Rpn/Exception.php';
-                throw new Mic_Rpn_Exception(get_class($token) . " is not a valid token type");
+                require_once 'MC/Rpn/Exception.php';
+                throw new MC_Rpn_Exception(get_class($token) . " is not a valid token type");
             }      
         }
         
         // by this point there should only be one element on the stack
         if ($this->_stack->count() !== 1) {
-            require_once 'Mic/Rpn/Exception.php';
-            throw new Mic_Rpn_Exception("Should be only one element remaining");
+            require_once 'MC/Rpn/Exception.php';
+            throw new MC_Rpn_Exception("Should be only one element remaining");
         }
         
         return $this->_stack->last();
@@ -429,8 +429,8 @@ class Mic_Rpn extends Mic_Object
     private function _validate($term)
     {
         if (!is_int($term) && !is_float($term) && !is_numeric($term)) {
-            require_once 'Mic/Rpn/Exception.php';
-            throw new Mic_Rpn_Exception("Term '{$term}' is not numeric");
+            require_once 'MC/Rpn/Exception.php';
+            throw new MC_Rpn_Exception("Term '{$term}' is not numeric");
         }
     }
 }

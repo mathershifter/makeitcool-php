@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Cacti
+ * @category  MC
+ * @package   MC_Cacti
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,12 +20,12 @@
  */
 
 /**
- * Mic_Cacti_ScriptServer_Plugin_Mpstat
+ * MC_Cacti_ScriptServer_Plugin_Mpstat
  *
- * @category  Mic
- * @package   Mic_Cacti
+ * @category  MC
+ * @package   MC_Cacti
  */
-class Mic_Cacti_ScriptServer_Plugin_Cpu extends Mic_Cacti_ScriptServer_Plugin
+class MC_Cacti_ScriptServer_Plugin_Cpu extends MC_Cacti_ScriptServer_Plugin
 {
     private $_pluginClass;
     /**
@@ -59,7 +59,7 @@ class Mic_Cacti_ScriptServer_Plugin_Cpu extends Mic_Cacti_ScriptServer_Plugin
     {
         try {
             $result = call_user_func(array($this->_pluginClass, 'parse'), $result);
-        } catch (Mic_Cacti_ScriptServer_Plugin_Cpu_Exception $e) {
+        } catch (MC_Cacti_ScriptServer_Plugin_Cpu_Exception $e) {
             $result = parent::_parse($result);
         }
         

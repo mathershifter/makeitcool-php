@@ -2,15 +2,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Loader
+ * @category  MC
+ * @package   MC_Loader
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -19,12 +19,12 @@
  */
 
 /**
- * Mic_Loader
+ * MC_Loader
  *
- * @category  Mic
- * @package   Mic_Loader
+ * @category  MC
+ * @package   MC_Loader
  */
-class Mic_Loader
+class MC_Loader
 {
     /**
      * Load a class file
@@ -32,7 +32,7 @@ class Mic_Loader
      * @param string $class      - The full class name of a component.
      * @param boolean $quiet
      * @return void
-     * @throws Mic_Exception
+     * @throws MC_Exception
      */
     public static function loadClass($class, $quiet=false)
     {
@@ -50,16 +50,16 @@ class Mic_Loader
         if ((include_once $path) === false) {
             if (!$quiet) {
                 error_reporting($errorReporting);
-                require_once('Mic/Loader/Exception.php');
-                throw new Mic_Loader_Exception("{$path} was not readable");
+                require_once('MC/Loader/Exception.php');
+                throw new MC_Loader_Exception("{$path} was not readable");
             }
         } elseif (!class_exists($class)) {
         
             // if class is still not defined explain how thing should work
             if (!$quiet) {
                 error_reporting($errorReporting);
-                require_once('Mic/Loader/Exception.php');
-                throw new Mic_Loader_Exception("Expected {$path} to define {$class}");
+                require_once('MC/Loader/Exception.php');
+                throw new MC_Loader_Exception("Expected {$path} to define {$class}");
             }
         
         }

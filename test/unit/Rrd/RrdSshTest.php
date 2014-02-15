@@ -15,7 +15,7 @@ class RrdSshTest extends RrdTest
 	{
 	    $identity = getenv('SSH_IDENTITY') ? "-i " . getenv('SSH_IDENTITY') : '';
 	    
-	    $rrd = new Mic_Rrd('ssh://cacti@localhost/usr/bin/rrdtool',
+	    $rrd = new MC_Rrd('ssh://cacti@localhost/usr/bin/rrdtool',
 	        array('ssh' => $identity));
 	    
         return $rrd;

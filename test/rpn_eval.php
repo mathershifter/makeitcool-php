@@ -5,8 +5,8 @@
  * 
  * Usage: rpn_eval.php <expression>
  */
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
 /* die early if expression is empty */
 if ($argc < 2) {
@@ -24,11 +24,11 @@ $expression = preg_replace('/,\s*/', ' ',
 
 try {
     /* attempt to evaluate the expression */
-    echo Mic_Rpn::evaluate($expression) . "\n";
-} catch (Mic_Rpn_Exception $e) {
+    echo MC_Rpn::evaluate($expression) . "\n";
+} catch (MC_Rpn_Exception $e) {
     /* Caught an expression error */ 
     die("RPN Error: " . $e->getMessage() . "\n");
-} catch (Mic_Type_Stack_Exception $e) {
+} catch (MC_Type_Stack_Exception $e) {
     /* Caught a lower level stack error */
     die("Stack Error: " . $e->getMessage() . "\n");
 } catch (Exception $e) {

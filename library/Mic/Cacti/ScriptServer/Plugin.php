@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Cacti
+ * @category  MC
+ * @package   MC_Cacti
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,12 +20,12 @@
  */
 
 /**
- * Mic_Cacti_ScriptServer_Plugin
+ * MC_Cacti_ScriptServer_Plugin
  *
- * @category  Mic
- * @package   Mic_Cacti
+ * @category  MC
+ * @package   MC_Cacti
  */
-abstract class Mic_Cacti_ScriptServer_Plugin
+abstract class MC_Cacti_ScriptServer_Plugin
 {
     /**
      * 
@@ -34,7 +34,7 @@ abstract class Mic_Cacti_ScriptServer_Plugin
         
     );
     
-    private $_paserClassPrefix = 'Mic_Cacti_ScriptServer_Parser_';
+    private $_paserClassPrefix = 'MC_Cacti_ScriptServer_Parser_';
     
     /**
      * 
@@ -75,7 +75,7 @@ abstract class Mic_Cacti_ScriptServer_Plugin
             return '';
         }
         
-        $_tmp = new Mic_Array();
+        $_tmp = new MC_Array();
         foreach ($this->result as $key=>$value) {
             $_tmp->push("{$key}:{$value}");
         }
@@ -125,7 +125,7 @@ abstract class Mic_Cacti_ScriptServer_Plugin
         } elseif (class_exists($absParser)) {
             $parser = $absParser;
         } else {
-            throw new Mic_Cacti_ScriptServer_Plugin_Exception(
+            throw new MC_Cacti_ScriptServer_Plugin_Exception(
                 "Parsers '{$parser}' or '{$absParser}' do not exist");
         }
         
@@ -140,7 +140,7 @@ abstract class Mic_Cacti_ScriptServer_Plugin
     {
         try {        
             $this->result = $this->_parse($this->_execute($params));
-        } catch (Mic_Cacti_ScriptServer_Exception $e) {
+        } catch (MC_Cacti_ScriptServer_Exception $e) {
             // issue warning or log?
         }
         

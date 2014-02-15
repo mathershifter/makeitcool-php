@@ -3,16 +3,16 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category   Mic
- * @package    Mic_Cache
- * @subpackage Mic_Cache_Time
+ * @category   MC
+ * @package    MC_Cache
+ * @subpackage MC_Cache_Time
  * @author     Jesse R. Mather <jrmather@gmail.com>
  * @copyright  2009 Nobody
  * @license    MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -21,18 +21,18 @@
  */
 
 /**
- * @see Mic_Array
+ * @see MC_Array
  */
-require_once 'Mic/Array.php';
+require_once 'MC/Array.php';
 
 /**
- * Mic_Cache_Time
+ * MC_Cache_Time
  * 
- * @category   Mic
- * @package    Mic_Cache
- * @subpackage Mic_Cache_Time
+ * @category   MC
+ * @package    MC_Cache
+ * @subpackage MC_Cache_Time
  */
-class Mic_Cache_Time
+class MC_Cache_Time
 {   
     // Class constants
     const DEFAULT_LIFETIME = 86400;
@@ -40,12 +40,12 @@ class Mic_Cache_Time
     /**
      * Stores reference to backend object 
      * 
-     * @var Mic_Cache_Time_Db_Abstract private
+     * @var MC_Cache_Time_Db_Abstract private
      */
     private $_backend;
     
     /**
-     * @var Mic_Cache_Time private
+     * @var MC_Cache_Time private
      */
     private static $_instance;
     
@@ -61,16 +61,16 @@ class Mic_Cache_Time
      * 
      * @param string $backend
      * @param array $options
-     * @return Mic_Cache_Time 
+     * @return MC_Cache_Time 
      */
     public function __construct($backend='sqlite', $options=null)
     {
         
         $backendClass = __CLASS__ . '_Db_' . ucfirst($backend);
         
-        require_once 'Mic/Loader.php';
+        require_once 'MC/Loader.php';
         
-        Mic_Loader::loadClass($backendClass);
+        MC_Loader::loadClass($backendClass);
         $this->_backend = new $backendClass($options);
         
         self::$_instance = $this;
@@ -81,11 +81,11 @@ class Mic_Cache_Time
      *
      * @param string $backend
      * @param array $options
-     * @return Mic_Cache_Time
+     * @return MC_Cache_Time
      */
     public static function connect($backend=null, $options=null)
     {
-        if (self::$_instance instanceof Mic_Cache_Time)
+        if (self::$_instance instanceof MC_Cache_Time)
             return self::$_instance;
     
         // get deferred parameters
@@ -98,8 +98,8 @@ class Mic_Cache_Time
         }
         
         if (!$backend) {
-            require_once 'Mic/Cache/Time/Exception.php';
-            throw new Mic_Cache_Time_Exception("no backend defined.");
+            require_once 'MC/Cache/Time/Exception.php';
+            throw new MC_Cache_Time_Exception("no backend defined.");
         }
         
         return new self($backend, $options);
@@ -178,8 +178,8 @@ class Mic_Cache_Time
     public function set($key, $data, $timestamp=false, $lifetime=false)
     {
         if (!$key) {
-            require_once 'Mic/Cache/Time/Exception.php';
-            throw new Mic_Cache_Time_Exception("key must be set.");
+            require_once 'MC/Cache/Time/Exception.php';
+            throw new MC_Cache_Time_Exception("key must be set.");
         }
         
         $timestamp = $this->_parseTime($timestamp);
@@ -201,12 +201,12 @@ class Mic_Cache_Time
      *
      * @param string $key
      * @param integer $timestamp
-     * @throws Mic_Cache_Time_Exception
+     * @throws MC_Cache_Time_Exception
      */
     public function delete($key, $timestamp)
     {
-        require_once 'Mic/Cache/Time/Exception.php';
-        throw new Mic_Cache_Time_Exception("Delete not implemented.");
+        require_once 'MC/Cache/Time/Exception.php';
+        throw new MC_Cache_Time_Exception("Delete not implemented.");
     }
     
     /**
@@ -219,8 +219,8 @@ class Mic_Cache_Time
     {   
         if (is_string($timestamp)) {
             if (($timestamp = strtotime($timestamp)) === false) {
-                require_once 'Mic/Cache/Time/Exception.php';
-                throw new Mic_Cache_Time_Exception("Failed to parse timestamp.");
+                require_once 'MC/Cache/Time/Exception.php';
+                throw new MC_Cache_Time_Exception("Failed to parse timestamp.");
             }
         } elseif($timestamp < 0) {
             $timestamp = time() + $timestamp; 

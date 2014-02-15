@@ -1,10 +1,10 @@
 <?php
 error_reporting(E_ALL | E_STRICT);
 
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-$rrd = new Mic_Rrd('tcp://rrd-server:13900');
+$rrd = new MC_Rrd('tcp://rrd-server:13900');
 
 
 $rrd->xport('--start 1281046500 --end 1281047400 --step 3600 DEF:traffic_in_22531=fwxbtl02_traffic_in_22531.rrd:traffic_in:AVERAGE DEF:traffic_out_22531=fwxbtl02_traffic_in_22531.rrd:traffic_out:AVERAGE XPORT:traffic_in_22531:traffic_in XPORT:traffic_out_22531:traffic_out');
@@ -93,7 +93,7 @@ print_r($rrd->response());
 #print_r($rrd->fetch('tc4phi0115_traffic_in_5435.rrd', 'MAX', '--start -7200', '--end now')->response());
 #$rrd = null; // close the connection
 #try {
-#    $rrd2 = new Mic_Rrd();
+#    $rrd2 = new MC_Rrd();
 #} catch (Exception $e) {
 #    echo $e->getMessage() . "\n";
 #}

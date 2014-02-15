@@ -2,15 +2,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Image
+ * @category  MC
+ * @package   MC_Image
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -19,12 +19,12 @@
  */
 
 /**
- * Mic_Image
+ * MC_Image
  *
- * @category  Mic
- * @package   Mic_Image
+ * @category  MC
+ * @package   MC_Image
  */
-class Mic_Image
+class MC_Image
 {
     /**
      * Access class for thumbnail generators
@@ -32,21 +32,21 @@ class Mic_Image
      * @param string $filename
      * @param array $options
      * @param string $type
-     * @return Mic_Thumb_Abstract
+     * @return MC_Thumb_Abstract
      */
     public static function factory($image, $type=false)
     {
         // allow the type to be statically defiend
         if (!$type) {
             if (self::isImage($image)) {
-                require_once 'Mic/Image/Exception.php';
-                throw new Mic_Image_Exception("Can not guess type from GD resource");
+                require_once 'MC/Image/Exception.php';
+                throw new MC_Image_Exception("Can not guess type from GD resource");
             } elseif (!is_string("{$image}")) {
-                require_once 'Mic/Image/Exception.php';
-                throw new Mic_Image_Exception("Image must be a string to guess type");
+                require_once 'MC/Image/Exception.php';
+                throw new MC_Image_Exception("Image must be a string to guess type");
             } elseif (!strstr("{$image}", '.')) {
-                require_once 'Mic/Image/Exception.php';
-                throw new Mic_Image_Exception("Can't guess type without an extension");
+                require_once 'MC/Image/Exception.php';
+                throw new MC_Image_Exception("Can't guess type without an extension");
             }
             
             $type = array_pop(explode('.', $image));
@@ -57,8 +57,8 @@ class Mic_Image
             $type = __CLASS__ . '_' . ucfirst($type);          
         }
         
-        require_once 'Mic/Loader.php';
-        Mic_Loader::loadClass($type);
+        require_once 'MC/Loader.php';
+        MC_Loader::loadClass($type);
         
         return new $type($image);
     }  

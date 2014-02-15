@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Ring
+ * @category  MC
+ * @package   MC_Ring
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -21,19 +21,19 @@
  */
 
 /**
- * @see Mic_Array 
+ * @see MC_Array 
  */
-require_once 'Mic/Array.php';
+require_once 'MC/Array.php';
 
 trigger_error(__FILE__ . " is deprecated", E_USER_WARNING);
 
 /**
- * Mic_Ring
+ * MC_Ring
  *
- * @category  Mic
- * @package   Mic_Ring
+ * @category  MC
+ * @package   MC_Ring
  */
-class Mic_Ring extends Mic_Array 
+class MC_Ring extends MC_Array 
 {
     private $_buffer = null;
     
@@ -47,12 +47,12 @@ class Mic_Ring extends Mic_Array
         echo "BUFFER: $buffer\n";
         
         if (!is_integer($buffer)) {
-            require_once 'Mic/Ring/Exception.php';
-            throw new Mic_Ring_Exception("Invalid buffer: must be an integer");
+            require_once 'MC/Ring/Exception.php';
+            throw new MC_Ring_Exception("Invalid buffer: must be an integer");
             
         } elseif ($buffer < 1) {
-            require_once 'Mic/Ring/Exception.php';
-            throw new Mic_Ring_Exception("Ring size must be greater than 0");
+            require_once 'MC/Ring/Exception.php';
+            throw new MC_Ring_Exception("Ring size must be greater than 0");
         } else {
             $this->_buffer = $buffer;
         }
@@ -65,8 +65,8 @@ class Mic_Ring extends Mic_Array
      */
     public function __set($name, $val)
     {
-        require_once 'Mic/Ring/Exception.php';
-        throw new Mic_Ring_Exception("__set is disabled");
+        require_once 'MC/Ring/Exception.php';
+        throw new MC_Ring_Exception("__set is disabled");
     }
     
     /**
@@ -74,8 +74,8 @@ class Mic_Ring extends Mic_Array
      */
     public function __unset($name)
     {
-        require_once 'Mic/Ring/Exception.php';
-        throw new Mic_Ring_Exception("__unset is disabled");
+        require_once 'MC/Ring/Exception.php';
+        throw new MC_Ring_Exception("__unset is disabled");
     }
     
     /**

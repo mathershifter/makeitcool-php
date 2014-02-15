@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_String
+ * @category  MC
+ * @package   MC_String
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
  * Class for a string object
  * 
- * @category  Mic
- * @package   Mic_String
+ * @category  MC
+ * @package   MC_String
  */
-class Mic_String extends Mic_Object
+class MC_String extends MC_Object
 {
     /**
      * Stores the actual data
@@ -137,7 +137,7 @@ class Mic_String extends Mic_Object
         $matched = $all ? preg_match_all($pattern, $this->_data, $matches) : preg_match($pattern, $this->_data, $matches);
         
         return $matched > 0 
-            ? (count($matches) == 1 ? new self($matches[0]) : new Mic_Array($matches))
+            ? (count($matches) == 1 ? new self($matches[0]) : new MC_Array($matches))
             : false;
     }
     
@@ -154,7 +154,7 @@ class Mic_String extends Mic_Object
     /**
      * Creates a human formatted version of the string
      *
-     * @return Mic_String
+     * @return MC_String
      */
     public function humanize()
     {
@@ -238,7 +238,7 @@ class Mic_String extends Mic_Object
      */
     public function rsplit($pattern, $limit=null, $flags=null)
     {
-        return new Mic_Array(preg_split($pattern, $this->_data, $limit, $flags));
+        return new MC_Array(preg_split($pattern, $this->_data, $limit, $flags));
     }
     
     /**
@@ -267,7 +267,7 @@ class Mic_String extends Mic_Object
      */
     public function split($delimeter='')
     {
-        return new Mic_Array($delimeter ? explode($delimeter, "{$this->_data}") : str_split("{$this->_data}"));
+        return new MC_Array($delimeter ? explode($delimeter, "{$this->_data}") : str_split("{$this->_data}"));
     }
     
     /**

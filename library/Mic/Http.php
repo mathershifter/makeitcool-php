@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Http
+ * @category  MC
+ * @package   MC_Http
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
- * Mic_Http
+ * MC_Http
  *
- * @category  Mic
- * @package   Mic_Http
+ * @category  MC
+ * @package   MC_Http
  */
-class Mic_Http extends Mic_Object
+class MC_Http extends MC_Object
 {
     /**
      * 
@@ -57,7 +57,7 @@ class Mic_Http extends Mic_Object
      */
     public function delete()
     {
-        throw new Mic_Http_Exception("Not implemented");
+        throw new MC_Http_Exception("Not implemented");
     }
     
     /**
@@ -75,7 +75,7 @@ class Mic_Http extends Mic_Object
     {
         $this->httpget = true;
         
-        return new Mic_Http_Response($this->_execute(), $this);
+        return new MC_Http_Response($this->_execute(), $this);
     }
     
     /**
@@ -83,7 +83,7 @@ class Mic_Http extends Mic_Object
      */
     public function post()
     {
-        throw new Mic_Http_Exception("Not implemented");
+        throw new MC_Http_Exception("Not implemented");
     }
     
     /**
@@ -91,7 +91,7 @@ class Mic_Http extends Mic_Object
      */
     public function put()
     {
-        throw new Mic_Http_Exception("Not implemented");
+        throw new MC_Http_Exception("Not implemented");
     }
     
     
@@ -105,7 +105,7 @@ class Mic_Http extends Mic_Object
         $body = ob_get_contents();
         ob_end_clean();
         
-        return new Mic_String($body);
+        return new MC_String($body);
     }
     
     public function getCurlInfo($field)

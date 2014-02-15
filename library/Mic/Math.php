@@ -2,15 +2,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Math
+ * @category  MC
+ * @package   MC_Math
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -19,12 +19,12 @@
  */
 
 /**
- * Mic_Math
+ * MC_Math
  *
- * @category  Mic
- * @package   Mic_Math
+ * @category  MC
+ * @package   MC_Math
  */
-class Mic_Math
+class MC_Math
 {
     public static function avg($set)
     {
@@ -128,15 +128,15 @@ class Mic_Math
     }
     
     /**
-     * Converts an array to a Mic_Array
+     * Converts an array to a MC_Array
      *
      * @param array $set
      * @return void 
      */    
     private function _convert(&$set)
     {
-        if (!$set instanceof Mic_Array) {
-            $set = new Mic_Array($set);
+        if (!$set instanceof MC_Array) {
+            $set = new MC_Array($set);
         }
     }		
 }

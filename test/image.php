@@ -5,8 +5,8 @@
  * 
  * Usage: image.php <source image> <dest image> <width> <height> <degrees>
  */
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
 /* die early if not enough arguments */
 if ($argc < 3) {
@@ -22,7 +22,7 @@ $width        = isset($argv[4]) ? $argv[4] : false;
 $height       = isset($argv[5]) ? $argv[5] : false;
 
 
-$image = Mic_Image::factory($source_image);
+$image = MC_Image::factory($source_image);
 
 // resize if width and height are greater than zero
 if ($width  > 0 && $height > 0) {

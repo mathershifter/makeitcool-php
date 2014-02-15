@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Proc
+ * @category  MC
+ * @package   MC_Proc
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,12 +20,12 @@
  */
 
 /**
- * Mic_Resource
+ * MC_Resource
  *
- * @category  Mic
- * @package   Mic_Resource
+ * @category  MC
+ * @package   MC_Resource
  */
-class Mic_Resource extends Mic_Object implements Iterator
+class MC_Resource extends MC_Object implements Iterator
 {
    
     /**
@@ -83,7 +83,7 @@ class Mic_Resource extends Mic_Object implements Iterator
     {
         $resource = array_shift($args);
         if (!is_resource($resource)) {
-            throw new Mic_Resource_Exception("Expected a valid resource.");
+            throw new MC_Resource_Exception("Expected a valid resource.");
         }
         
         return $resource;

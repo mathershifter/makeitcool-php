@@ -1,13 +1,13 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-$proc = Mic_Proc::open($_SERVER['argv'][1]); //, array('stderr' => array('file', '/tmp/wtf.log', 'a')));
+$proc = MC_Proc::open($_SERVER['argv'][1]); //, array('stderr' => array('file', '/tmp/wtf.log', 'a')));
 
 //echo "PROC: "; print_r($proc);
 
 //echo $proc->stdout;
-//echo Mic_Proc::exec($_SERVER['argv'][1]);
+//echo MC_Proc::exec($_SERVER['argv'][1]);
 
 //print_r($proc->stdout);
 

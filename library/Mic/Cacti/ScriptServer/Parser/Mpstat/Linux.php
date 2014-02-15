@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Cacti
+ * @category  MC
+ * @package   MC_Cacti
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,12 +20,12 @@
  */
 
 /**
- * Mic_Cacti_ScriptServer_Parser_Mpstat_Linux
+ * MC_Cacti_ScriptServer_Parser_Mpstat_Linux
  *
- * @category  Mic
- * @package   Mic_Cacti
+ * @category  MC
+ * @package   MC_Cacti
  */
-class Mic_Cacti_ScriptServer_Parser_Mpstat_Linux
+class MC_Cacti_ScriptServer_Parser_Mpstat_Linux
 {
     /**
      * 
@@ -71,6 +71,6 @@ class Mic_Cacti_ScriptServer_Parser_Mpstat_Linux
         }
         
         
-        throw new Mic_Cacti_ScriptServer_Parser_Exception("Failed to parse command output");
+        throw new MC_Cacti_ScriptServer_Parser_Exception("Failed to parse command output");
     }
 }

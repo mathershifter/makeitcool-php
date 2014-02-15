@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Http
+ * @category  MC
+ * @package   MC_Http
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
- * Mic_Http_Authentication_Digest
+ * MC_Http_Authentication_Digest
  *
- * @category  Mic
- * @package   Mic_Http_Authentication
+ * @category  MC
+ * @package   MC_Http_Authentication
  */
-class Mic_Http_Authentication_Digest extends Mic_Object
+class MC_Http_Authentication_Digest extends MC_Object
 {
     /**
      * 
@@ -47,7 +47,7 @@ class Mic_Http_Authentication_Digest extends Mic_Object
      */
     public function __construct($secret=null, $request=null)
     {
-        $this->_request = $request ? $request : new Mic_Request();
+        $this->_request = $request ? $request : new MC_Request();
         $this->_secret = $secret ? $secret : $this->_secret;
     }
     
@@ -76,7 +76,7 @@ class Mic_Http_Authentication_Digest extends Mic_Object
     private function _nonce($secret, $time=null)
     {
         $time = $time ? $time : time();
-        $hashed = new Mic_Array($time, $secret);
+        $hashed = new MC_Array($time, $secret);
         $digest = md5($hashed->join(':'));
         
         return base64_encode(S("{$time}:{$digest}")->replace("/\n/", '')->toS());
@@ -96,12 +96,12 @@ class Mic_Http_Authentication_Digest extends Mic_Object
     private function _parseDigest()
     {
         if (!isset($_SERVER['PHP_AUTH_DIGEST'])) {
-            //throw new Mic_Http_Authentication_Exception("Digest authentication header is not present");
+            //throw new MC_Http_Authentication_Exception("Digest authentication header is not present");
             return null;
         }
         
-        $digest =  new Mic_String($_SERVER['PHP_AUTH_DIGEST']);
-        $decoded = new Mic_Array();
+        $digest =  new MC_String($_SERVER['PHP_AUTH_DIGEST']);
+        $decoded = new MC_Array();
         
         //Don't need to do this in PHP... ->replace('/^Digest\s+/', '')
         $digest->split(',')->map(function($pair) use (&$decoded) {

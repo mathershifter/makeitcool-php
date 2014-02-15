@@ -13,16 +13,16 @@ class RrdTcpTest extends RrdTest
 {
     public function testOpen()
 	{
-	    $rrd = new Mic_Rrd('tcp://localhost:13900');
+	    $rrd = new MC_Rrd('tcp://localhost:13900');
 	    
-	    $this->assertEquals('Mic_Rrd', get_class($rrd));
+	    $this->assertEquals('MC_Rrd', get_class($rrd));
         return $rrd;
 	}
 	
 	public function testOpenFail()
 	{
 	    try {
-            new Mic_Rrd('tcp://nonexistent:13900', array('timeout' => 1));    
+            new MC_Rrd('tcp://nonexistent:13900', array('timeout' => 1));    
 	    } catch (Exception $expected) {
             return;
         }

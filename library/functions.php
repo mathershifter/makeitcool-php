@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic
+ * @category  MC
+ * @package   MC
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -22,36 +22,36 @@
 /**
  * Wrapper for creating a base object
  *
- * @return Mic_Object
+ * @return MC_Object
  */
 function O()
 {
-    return new Mic_Object();
+    return new MC_Object();
 }
 
 /**
  * Wrapper for creating an array object
  *
  * @param array $array
- * @return Mic_Array
+ * @return MC_Array
  */
 function A($array=array())
 {
-    return new Mic_Array($array);
+    return new MC_Array($array);
 }
 
 function C($array=array())
 {
-    return new Mic_Collection($array);
+    return new MC_Collection($array);
 }
 
 /**
  * Wrapper for creating a string object
  *
  * @param string $string
- * @return Mic_String
+ * @return MC_String
  */
 function S($string='')
 {
-    return new Mic_String($string);
+    return new MC_String($string);
 }

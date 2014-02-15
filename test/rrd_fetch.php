@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
 /* die early if expression is empty */
 if ($argc < 3) {
@@ -17,7 +17,7 @@ $arguments = preg_replace('/,\s*/', ' ',
     )
 );
 
-$rrd = new Mic_Rrd($host);
+$rrd = new MC_Rrd($host);
 $rrd->fetch($arguments);
 
 $xml = new XMLWriter();

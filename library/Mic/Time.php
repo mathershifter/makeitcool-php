@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Time
+ * @category  MC
+ * @package   MC_Time
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
  * Base class for time objects
  *
- * @category  Mic
- * @package   Mic_Time
+ * @category  MC
+ * @package   MC_Time
  */
-class Mic_Time
+class MC_Time
 {
     // Constants - common formats
     const MYSQL   = 'Y-m-d H:i:s';
@@ -47,7 +47,7 @@ class Mic_Time
     /**
      * 
      * @param integer $time
-     * @return Mic_Time
+     * @return MC_Time
      */
     public function __construct($time=null)
     {
@@ -180,7 +180,7 @@ class Mic_Time
             case 'y':
                 return self::create($this->year);
             default:
-                throw new Mic_Time_Exception("Invalid interval: $interval");
+                throw new MC_Time_Exception("Invalid interval: $interval");
         }
     }
 
@@ -200,28 +200,28 @@ class Mic_Time
     /**
      * 
      * @param integer $time
-     * @return Mic_Duration
+     * @return MC_Duration
      */
     public function getDuration($time=null)
     {
-        if (get_class($time) === 'Mic_Time') {
+        if (get_class($time) === 'MC_Time') {
             $time = $time->toI();
         }
 
         $seconds = abs(($time ? $time : time()) - $this->_time);
         
         /**
-         * @see Mic_Duration
+         * @see MC_Duration
          */
-        require_once 'Mic/Duration.php';
-        return new Mic_Duration($seconds);
+        require_once 'MC/Duration.php';
+        return new MC_Duration($seconds);
     }
     
     /**
      * Creates a new time object offset from the current time object
      * 
      * @param string $string
-     * @return Mic_Time
+     * @return MC_Time
      */
     public function getOffset($string)
     {
@@ -237,7 +237,7 @@ class Mic_Time
      * Creates a new time object
      * 
      * @param integer $now
-     * @return Mic_Time
+     * @return MC_Time
      */
     public static function at($time)
     {
@@ -251,7 +251,7 @@ class Mic_Time
      * Creates a new time object
      * 
      * @param integer $now
-     * @return Mic_Time
+     * @return MC_Time
      */
     public static function now()
     {
@@ -264,7 +264,7 @@ class Mic_Time
      * Creates a new time object
      * 
      * @param integer $now
-     * @return Mic_Time
+     * @return MC_Time
      */
     public function offset($offset=0)
     {
@@ -275,7 +275,7 @@ class Mic_Time
      * Creates a new time object from a string
      * 
      * @param unknown_type $string
-     * @return Mic_Time
+     * @return MC_Time
      */
     public static function parse($string)
     {

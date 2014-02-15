@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-$resource = Mic_Directory::open('.');
+$resource = MC_Directory::open('.');
 
 var_dump($resource);
 

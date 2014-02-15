@@ -3,8 +3,8 @@
 /**
  *
  */
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-Mic_Weathermap_Cli::execute();
+MC_Weathermap_Cli::execute();
 

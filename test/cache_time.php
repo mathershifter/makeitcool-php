@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-$ct = new Mic_Cache_Time('sqlite', array('path' => '/tmp'));
+$ct = new MC_Cache_Time('sqlite', array('path' => '/tmp'));
 
 //$ct->set('some_key', array(mt_rand(), mt_rand()));
 
@@ -39,7 +39,7 @@ class TestCb
     }
     public function testCache()
     {
-        $ct = new Mic_Cache_Time('sqlite', array('path' => '/tmp'));
+        $ct = new MC_Cache_Time('sqlite', array('path' => '/tmp'));
         print_r($ct->get('some_key', 'now', 'now', array($this, 'cb'), array('Method')));
         sleep(1);
         print_r($ct->get('some_key', 'now', 'now', array(__CLASS__, 'cbs'), array('Static')));

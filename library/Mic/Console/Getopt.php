@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Array
+ * @category  MC
+ * @package   MC_Array
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -28,12 +28,12 @@ require_once 'Zend/Console/Getopt.php';
 trigger_error(basename(__FILE__) . " is deprecated", E_USER_WARNING);
 
 /**
- * Mic_Consol_Getopt
+ * MC_Consol_Getopt
  *
- * @category  Mic
- * @package   Mic_Console
+ * @category  MC
+ * @package   MC_Console
  */
-class Mic_Console_Getopt extends Zend_Console_Getopt
+class MC_Console_Getopt extends Zend_Console_Getopt
 {
     /**
      * 

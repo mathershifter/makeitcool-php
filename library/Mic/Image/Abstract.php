@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Image
+ * @category  MC
+ * @package   MC_Image
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,22 +20,22 @@
  */
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
- * @see Mic_Image 
+ * @see MC_Image 
  */
-require_once 'Mic/Image.php';
+require_once 'MC/Image.php';
  
 /**
- * Mic_Image_Abstract
+ * MC_Image_Abstract
  * 
- * @category  Mic
- * @package   Mic_Image
+ * @category  MC
+ * @package   MC_Image
  */
-abstract class Mic_Image_Abstract extends Mic_Object
+abstract class MC_Image_Abstract extends MC_Object
 {
     /**
      * @var resource
@@ -59,27 +59,27 @@ abstract class Mic_Image_Abstract extends Mic_Object
     /**
      * 
      * @param mixed $image
-     * @throws Mic_Image_Exception
+     * @throws MC_Image_Exception
      */
     public function __construct($image)
     {
-        if (!Mic_Image::gdLoad()) {
-            require_once 'Mic/Image/Exception.php';
-            throw new Mic_Image_Exception("GD library is not loaded");
+        if (!MC_Image::gdLoad()) {
+            require_once 'MC/Image/Exception.php';
+            throw new MC_Image_Exception("GD library is not loaded");
         }
         
         if (is_array($image)) {
             $this->_image = imagecreatetruecolor($image['width'], $image['height']);
         } else {
             // if image is already a GD resource, don't need to open it
-            if (Mic_Image::isImage($image)) {
+            if (MC_Image::isImage($image)) {
                 $this->_image = $image;
                 $this->_setMetaData();
             } elseif (is_string($image)) {
                 $this->open($image);
             } else {
-                require_once 'Mic/Image/Exception.php';
-                throw new Mic_Image_Exception("Image is not a string or a resource");
+                require_once 'MC/Image/Exception.php';
+                throw new MC_Image_Exception("Image is not a string or a resource");
             }
         }
     }
@@ -89,7 +89,7 @@ abstract class Mic_Image_Abstract extends Mic_Object
      */
     public function __destruct()
     {   
-        if (Mic_Image::isImage($this->_image)) {
+        if (MC_Image::isImage($this->_image)) {
             imagedestroy($this->_image);
         }
     }
@@ -103,8 +103,8 @@ abstract class Mic_Image_Abstract extends Mic_Object
     public function __get($name)
     {
         if (!array_key_exists($name, $this->_meta)) {
-            require_once 'Mic/Image/Exception.php';
-            throw new Mic_Image_Exception('Unknown property: ' . $name);
+            require_once 'MC/Image/Exception.php';
+            throw new MC_Image_Exception('Unknown property: ' . $name);
         }
         return $this->_meta[$name];
     }
@@ -141,13 +141,13 @@ abstract class Mic_Image_Abstract extends Mic_Object
     {
         if (!$filename || $filename === $this->path) {
             if ($overwrite=false) {
-                require_once 'Mic/Image/Exception.php';
-                throw new Mic_Image_Exception('Will not overwrite original image unless explicitly told to do so.');
+                require_once 'MC/Image/Exception.php';
+                throw new MC_Image_Exception('Will not overwrite original image unless explicitly told to do so.');
             }
             
             if (!$this->path) {
-                require_once 'Mic/Image/Exception.php';
-                throw new Mic_Image_Exception('Image was not loaded from a file.  A filename must be specified in this case.');
+                require_once 'MC/Image/Exception.php';
+                throw new MC_Image_Exception('Image was not loaded from a file.  A filename must be specified in this case.');
             }
             
             $filename = $this->_path;
@@ -178,11 +178,11 @@ abstract class Mic_Image_Abstract extends Mic_Object
     /**
      * 
      * @param $type
-     * @return Mic_Image_Abstract
+     * @return MC_Image_Abstract
      */
     public function convert($type)
     {
-        return Mic_Image::factory($this->_image, $type);
+        return MC_Image::factory($this->_image, $type);
     }
     
     /**

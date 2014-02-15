@@ -36,14 +36,14 @@ SET PWD=%PWD%..
 ::  * 
 ::  * @var               string TITLE
 ::  */
-SET TITLE=Mic Framework Documentation
+SET TITLE=MC Framework Documentation
 
 :: /** 
 ::  * name to use for the default package. If not specified, uses 'default'
 ::  *
 ::  * @var               string PACKAGES
 ::  */
-SET PACKAGES=Mic
+SET PACKAGES=MC
 
 :: /**
 ::  * name of a directory(s) to parse directory1,directory2

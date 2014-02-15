@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
 $array = A(array('lame' => 'test0', 'test', 'test2', 10));
 

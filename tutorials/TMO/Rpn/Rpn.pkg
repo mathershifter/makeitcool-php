@@ -25,7 +25,7 @@
         
         <refsect2 id="{@id std_operators}">
         <title>Standard</title>
-        <para>Mic_Rpn supports all standard operators.  In addition, several extended operators ahave been added.</para>
+        <para>MC_Rpn supports all standard operators.  In addition, several extended operators ahave been added.</para>
         
             <table>
                 <title>Table 1 - Standard Operators</title>
@@ -155,12 +155,12 @@
         <para></para>
         <programlisting role="php">
 &lt;?php
-require 'Mic/Rpn.php';
+require 'MC/Rpn.php';
 
 /* perform a simple caclulation */
-$result = Mic_Rpn::evaluate('1 1 +');
+$result = MC_Rpn::evaluate('1 1 +');
 
-/* the result is stored in a Mic_Type_Numeric or Mic_Type_Null object */
+/* the result is stored in a MC_Type_Numeric or MC_Type_Null object */
 var_dump($result);
 
 /* print the result as string */
@@ -178,7 +178,7 @@ echo $result . "\n";
  * 
  * Usage: rpn_eval.php &lt;expression&gt;
  */
-require 'Mic/Rpn.php';
+require 'MC/Rpn.php';
 
 /* die early if expression is empty */
 if ($argc &lt; 2) {
@@ -195,11 +195,11 @@ $expression = preg_replace('/,\s*/', ' ',
 );
 
 try { /* attempt to evaluate the expression */
-    echo Mic_Rpn::evaluate($expression) . "\n";
-} catch (Mic_Rpn_Exception $e) {
+    echo MC_Rpn::evaluate($expression) . "\n";
+} catch (MC_Rpn_Exception $e) {
     /* Caught an expression error */ 
     echo "Rpn Error: " . $e-&gt;getMessage() . "\n";
-} catch (Mic_Type_Stack_Exception $e) {
+} catch (MC_Type_Stack_Exception $e) {
     /* Caught a lower level stack error */
     echo "Stack Error: " . $e-&gt;getMessage() . "\n";
 }

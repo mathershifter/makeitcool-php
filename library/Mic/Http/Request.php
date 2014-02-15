@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Http_Request
+ * @category  MC
+ * @package   MC_Http_Request
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,14 +20,14 @@
  */
 
 /**
- * Mic_Http_Request
+ * MC_Http_Request
  * 
  * Packages HTTP request data into an object
  *
- * @category  Mic
- * @package   Mic_Http_Request
+ * @category  MC
+ * @package   MC_Http_Request
  */
-class Mic_Http_Request extends Mic_Object
+class MC_Http_Request extends MC_Object
 {
     private static $_instance;
     
@@ -55,13 +55,13 @@ class Mic_Http_Request extends Mic_Object
     /**
      * XXX
      * 
-     * @return Mic_Http_Request
+     * @return MC_Http_Request
      */
     public function __construct()
     {
         $this->method     = $_SERVER['REQUEST_METHOD'];
                 
-        $this->params     = new Mic_Array(array_merge($_GET, $_POST));
+        $this->params     = new MC_Array(array_merge($_GET, $_POST));
         $this->path       = $_SERVER['SCRIPT_NAME'];
         $this->query      = $_SERVER['QUERY_STRING'];
         $this->file       = $_SERVER['SCRIPT_FILENAME'];
@@ -75,9 +75,9 @@ class Mic_Http_Request extends Mic_Object
                             && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         
         /**
-         * Mic_Time
+         * MC_Time
          */                    
-        $this->time       = new Mic_Time($_SERVER['REQUEST_TIME']);
+        $this->time       = new MC_Time($_SERVER['REQUEST_TIME']);
         
         /*
          * build the URL
@@ -125,7 +125,7 @@ class Mic_Http_Request extends Mic_Object
     public function __get($name)
     {
         if (!array_key_exists($name, $this->_properties)) {
-            throw new Mic_Http_Exception("Unrecognized request property: $name");
+            throw new MC_Http_Exception("Unrecognized request property: $name");
         }
         
         return $this->_properties[$name];
@@ -242,7 +242,7 @@ class Mic_Http_Request extends Mic_Object
      */
     private function _setHeaders()
     {
-        $this->headers = new Mic_Array();
+        $this->headers = new MC_Array();
         
         if ($headers = getallheaders()) {
             foreach ($headers as $header=>$value) {

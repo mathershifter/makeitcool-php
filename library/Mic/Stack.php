@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Stack
+ * @category  MC
+ * @package   MC_Stack
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -21,19 +21,19 @@
  */
 
 /**
- * @see Mic_Array
+ * @see MC_Array
  */
-require_once 'Mic/Array.php';
+require_once 'MC/Array.php';
 
 trigger_error(__FILE__ . " is deprecated", E_USER_WARNING);
 
 /**
- * Mic_Stack
+ * MC_Stack
  * 
- * @category  Mic
- * @package   Mic_Stack
+ * @category  MC
+ * @package   MC_Stack
  */
-class Mic_Stack extends Mic_Array
+class MC_Stack extends MC_Array
 {
     /**
      * 

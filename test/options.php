@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../library/MC.php';
+MC::boot();
 
-$parser = new Mic_Console_OptionParser;
+$parser = new MC_Console_OptionParser;
 
 $parser->addRule('t|test::', "Test rule");
 $parser->addRule('d|debug', "Debug rule");

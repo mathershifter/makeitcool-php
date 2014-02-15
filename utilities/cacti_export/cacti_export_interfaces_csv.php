@@ -1,7 +1,6 @@
 <?php
-//require_once '/opt/MicFramework/head/library/Mic.php';
-require_once dirname(__FILE__) . '/../../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../../library/MC.php';
+MC::boot();
 
 //
 set_time_limit(3600);
@@ -26,10 +25,10 @@ $maxrows                = isset($_GET['maxrows']) ? $_GET['maxrows'] : 8640;
 $consolidation_function = false;
 
 //
-$start_time             = isset($_GET['start_time']) ? Mic_Time::parse($_GET['start_time']) : Mic_Time::parse('1 hour ago')->floor('h');
+$start_time             = isset($_GET['start_time']) ? MC_Time::parse($_GET['start_time']) : MC_Time::parse('1 hour ago')->floor('h');
 
 //
-$end_time               = isset($_GET['end_time'])   ? Mic_Time::parse($_GET['end_time'])   : Mic_Time::now()->floor('h')->offset(-1);
+$end_time               = isset($_GET['end_time'])   ? MC_Time::parse($_GET['end_time'])   : MC_Time::now()->floor('h')->offset(-1);
 
 //
 $include                = isset($_GET['host_filter']) ? $_GET['host_filter'] : '.*';
@@ -158,7 +157,7 @@ foreach ($cacti_servers as $current_server=>$config) {
                 foreach ($response['data'] as $row) {
                     $ds_row_data = array_merge($ds_base_data, array(
                         'timestamp'      => $row['timestamp'],
-                        'time'           => Mic_Time::at($row['timestamp'])->toS()
+                        'time'           => MC_Time::at($row['timestamp'])->toS()
                     ));
                     
                     if ($step > 0) {
@@ -178,7 +177,7 @@ foreach ($cacti_servers as $current_server=>$config) {
                 }
                 
                 foreach ($ds_series_data as $ds_series_row) {
-                    echo Mic_Template2::process('"{hostname}","{host_addr}","{if_name}","{if_descr}","{if_alias}",{if_index},"{if_ip}","{if_oper_status}",{if_speed},{resolution},{timestamp},"{time}",{traffic_in},{traffic_out},{unicast_in},{unicast_out},{errors_in},{errors_out},{discards_in},{discards_out}' . "\n", $ds_series_row);
+                    echo MC_Template2::process('"{hostname}","{host_addr}","{if_name}","{if_descr}","{if_alias}",{if_index},"{if_ip}","{if_oper_status}",{if_speed},{resolution},{timestamp},"{time}",{traffic_in},{traffic_out},{unicast_in},{unicast_out},{errors_in},{errors_out},{discards_in},{discards_out}' . "\n", $ds_series_row);
                 }
                 
                 flush();
@@ -209,7 +208,7 @@ function xport_graphs($graph_ids)
             trigger_error("DEBUG: Running: 'rrdtool xport $xport'", E_USER_NOTICE);
             
             $data = $rrd->xport($xport)->getResponse()->toArray();
-        } catch (Mic_Rrd_Exception $e) {
+        } catch (MC_Rrd_Exception $e) {
             trigger_error('RRD Xport failed for graphs (' . join(', ', $graph_ids) . ') with: ' . $e->getMessage(), E_USER_NOTICE);
         }
         
@@ -224,7 +223,7 @@ function rrd_connect()
     
     $rrd = false;
     try {
-        $rrd = new Mic_Rrd('tcp://' . $server);
+        $rrd = new MC_Rrd('tcp://' . $server);
         
         if ($directory) {
             $rrd->cd($directory);    
@@ -233,11 +232,11 @@ function rrd_connect()
             // but continue if unsuccessful
             try {
                 $rrd->cd('cacti');    
-            } catch (Mic_Rrd_Exception $e) {
+            } catch (MC_Rrd_Exception $e) {
                 /* ignore */
             }
         }
-    } catch (Mic_Rrd_Exception $e) {
+    } catch (MC_Rrd_Exception $e) {
         trigger_error("Failed to connect to rrdsrv: " . $e->getMessage(), E_USER_WARNING);
     }
     

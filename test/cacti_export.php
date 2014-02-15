@@ -2,10 +2,9 @@
 /**
  *
  */
-require_once dirname(__FILE__) . '/../projects/tmo_php/library/Mic.php';
-#require_once '/opt/MicFramework/release-0.9.4b/library/Mic.php';
+require_once dirname(__FILE__) . '/../projects/tmo_php/library/MC.php';
 
-Mic::boot();
+MC::boot();
 
 set_time_limit(300);
 
@@ -75,8 +74,8 @@ $data_keys     = A(array(
 ));
 
 try {
-    $cacti = Mic_Cacti::connect($opts->server, array('host' => $opts->server));
-} catch (Mic_Cacti_Exception $e) {
+    $cacti = MC_Cacti::connect($opts->server, array('host' => $opts->server));
+} catch (MC_Cacti_Exception $e) {
     echo json_encode("ERROR: " . $e->getMessage());
     exit(1);
 }
@@ -128,7 +127,7 @@ foreach ($graphs as $graph) {
     }
     
     try {
-        $rrd = new Mic_Rrd('tcp://' . $opts->server);
+        $rrd = new MC_Rrd('tcp://' . $opts->server);
         
         if ($opts->directory) {
             $rrd->cd($opts->directory);
@@ -146,7 +145,7 @@ foreach ($graphs as $graph) {
         
         $rrd->close();
         
-    } catch (Mic_Rrd_Exception $e) {
+    } catch (MC_Rrd_Exception $e) {
         $error = $e->getMessage();
     }
     

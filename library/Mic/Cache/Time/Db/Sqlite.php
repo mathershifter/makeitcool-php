@@ -3,16 +3,16 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category   Mic
- * @package    Mic_Cache
- * @subpackage Mic_Cache_Time
+ * @category   MC
+ * @package    MC_Cache
+ * @subpackage MC_Cache_Time
  * @author     Jesse R. Mather <jrmather@gmail.com>
  * @copyright  2009 Nobody
  * @license    MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -21,18 +21,18 @@
  */
 
 /**
- * @see Mic_Cache_Time_Db_Abstract
+ * @see MC_Cache_Time_Db_Abstract
  */
-require_once 'Mic/Cache/Time/Db/Abstract.php';
+require_once 'MC/Cache/Time/Db/Abstract.php';
 
 /**
- * Mic_Cache_Time_Db_Sqlite
+ * MC_Cache_Time_Db_Sqlite
  * 
- * @category   Mic
- * @package    Mic_Cache
- * @subpackage Mic_Cache_Time
+ * @category   MC
+ * @package    MC_Cache
+ * @subpackage MC_Cache_Time
  */
-class Mic_Cache_Time_Db_Sqlite extends Mic_Cache_Time_Db_Abstract
+class MC_Cache_Time_Db_Sqlite extends MC_Cache_Time_Db_Abstract
 {
     /**
      * 
@@ -55,8 +55,8 @@ class Mic_Cache_Time_Db_Sqlite extends Mic_Cache_Time_Db_Abstract
         } elseif (preg_match('/\.(:?db|sqlite3?)$/', $path) && is_dir(dirname($path))) {
             // all included, nothing to do
         } else {
-            require_once('Mic/Cache/Time/Db/Exception.php');
-            throw new Mic_Cache_Time_Db_Exception("Failed to determine useable path from: "
+            require_once('MC/Cache/Time/Db/Exception.php');
+            throw new MC_Cache_Time_Db_Exception("Failed to determine useable path from: "
                 . $path);
         }
         
@@ -69,8 +69,8 @@ class Mic_Cache_Time_Db_Sqlite extends Mic_Cache_Time_Db_Abstract
             // make sure any one can write to this database
             if ($newDb) chmod($path, 0666);
         } catch (PDOException $e) {
-            require_once('Mic/Cache/Time/Db/Exception.php');
-            throw new Mic_Cache_Time_Db_Exception("Failed to open database: $db. "
+            require_once('MC/Cache/Time/Db/Exception.php');
+            throw new MC_Cache_Time_Db_Exception("Failed to open database: $db. "
                 . $e->getMessage());
         }
         
@@ -112,8 +112,8 @@ class Mic_Cache_Time_Db_Sqlite extends Mic_Cache_Time_Db_Abstract
         #        'FROM metadata WHERE key = ?', array($key)));
         
         #if ((int) $metaData->lifetime !== (int) $lifetime) {
-        #    require_once('Mic/Cache/Time/Db/Exception.php');
-        #    throw new Mic_Cache_Time_Db_Exception("Tried to insert a " .
+        #    require_once('MC/Cache/Time/Db/Exception.php');
+        #    throw new MC_Cache_Time_Db_Exception("Tried to insert a " .
         #        "duplicate metadata entry using a different lifetime " .
         #        "than the existing one: " .
         #        "[{$metaData->lifetime} !== {$lifetime}]");
@@ -150,7 +150,7 @@ class Mic_Cache_Time_Db_Sqlite extends Mic_Cache_Time_Db_Abstract
     private function _query($sql, $params=null)
     {
         $sth = $this->_execute($sql, $params);
-        return $sth->fetchAll(PDO::FETCH_CLASS, 'Mic_Cache_Time_Record');
+        return $sth->fetchAll(PDO::FETCH_CLASS, 'MC_Cache_Time_Record');
     }
     
     private function _execute($sql, $params=null)
@@ -160,8 +160,8 @@ class Mic_Cache_Time_Db_Sqlite extends Mic_Cache_Time_Db_Abstract
            
         if ($sth->execute($params) === false) {
             $error = $this->_handle->errorInfo();
-            require_once('Mic/Cache/Time/Db/Exception.php');
-            throw new Mic_Cache_Time_Db_Exception("Failed to execute statement: "
+            require_once('MC/Cache/Time/Db/Exception.php');
+            throw new MC_Cache_Time_Db_Exception("Failed to execute statement: "
                 . $error[2] . '[' . $error[1] . ']');   
         }
         
@@ -173,8 +173,8 @@ class Mic_Cache_Time_Db_Sqlite extends Mic_Cache_Time_Db_Abstract
         $sth = $this->_handle->prepare($statement);
         if (!$sth) {
             $error = $this->_handle->errorInfo();
-            require_once('Mic/Cache/Time/Db/Exception.php');
-            throw new Mic_Cache_Time_Db_Exception('Failed to prepare statement: '
+            require_once('MC/Cache/Time/Db/Exception.php');
+            throw new MC_Cache_Time_Db_Exception('Failed to prepare statement: '
                 . $error[2] . '[' . $error[1] . ']');
         }
         return $sth;

@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Make It Cool (Mic) PHP Framework
+ * Make It Cool (MC) PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic
+ * @category  MC
+ * @package   MC
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,16 +20,16 @@
  */
 
 /**
- * Mic
+ * MC
  * 
- * @category   Mic
- * @package    Mic
+ * @category   MC
+ * @package    MC
  * @author     Jesse R. Mather <jrmather@gmail.com>
  * @copyright  2009 Nobody
  * @license    MIT License (http://www.opensource.org/licenses/mit-license.php)
  * @version    Release: @package_version@
  */
-class Mic
+class MC
 {
     /**
      * Sets the include path, registers the autoloader, and loads convenience
@@ -51,8 +51,8 @@ class Mic
         }
         
         // register the auto-loader
-        require_once('Mic/Loader.php');
-        spl_autoload_register(array('Mic_Loader', 'autoload'), true);
+        require_once('MC/Loader.php');
+        spl_autoload_register(array('MC_Loader', 'autoload'), true);
         
         // load wrapper functions
         require_once 'functions.php';

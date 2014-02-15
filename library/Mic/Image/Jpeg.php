@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Image
+ * @category  MC
+ * @package   MC_Image
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * @see Mic_Image_Abstract
+ * @see MC_Image_Abstract
  */
-require_once 'Mic/Image/Abstract.php';
+require_once 'MC/Image/Abstract.php';
 
 /**
- * Mic_Image_Jpeg
+ * MC_Image_Jpeg
  * 
- * @category  Mic
- * @package   Mic_Image
+ * @category  MC
+ * @package   MC_Image
  */
-class Mic_Image_Jpeg extends Mic_Image_Abstract
+class MC_Image_Jpeg extends MC_Image_Abstract
 {
     /**
      * 

@@ -1,10 +1,10 @@
 <?php
 
 require_once(join(DIRECTORY_SEPARATOR, array(
-    dirname(__FILE__), '..' , '..', '..', 'library', 'Mic.php'
+    dirname(__FILE__), '..' , '..', '..', 'library', 'MC.php'
 )));
 
-Mic::boot();
+MC::boot();
 
 
 class StringTest extends PHPUnit_Framework_TestCase
@@ -12,9 +12,9 @@ class StringTest extends PHPUnit_Framework_TestCase
     private $_testString = "Test this string ";
     public function testString()
     {
-        $string = new Mic_String($this->_testString);
+        $string = new MC_String($this->_testString);
         
-        $this->assertEquals('Mic_String', get_class($string));
+        $this->assertEquals('MC_String', get_class($string));
         
         return $string;
     }
@@ -74,7 +74,7 @@ class StringTest extends PHPUnit_Framework_TestCase
      */
     public function testHex($string)
     {
-        $hex = new Mic_String("74657374207468697320737472696e6720");
+        $hex = new MC_String("74657374207468697320737472696e6720");
         $this->assertEquals("$hex", "{$string->hex()}");
         $this->assertFalse($string->isHex());
         $this->assertTrue($hex->isHex());
@@ -125,7 +125,7 @@ class StringTest extends PHPUnit_Framework_TestCase
     /**
      * @depends testString
      */
-    public function testTrim(Mic_String $string)
+    public function testTrim(MC_String $string)
     {
         $this->assertEquals(trim($this->_testString), "{$string->trim()}");
     }

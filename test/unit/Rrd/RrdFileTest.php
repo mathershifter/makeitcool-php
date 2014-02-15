@@ -15,7 +15,7 @@ class RrdFileTest extends RrdTest
     public function testOpen()
 	{
 	    
-	    $rrd = new Mic_Rrd('file:///usr/local/rrdtool-1.2.19/bin/rrdtool');
+	    $rrd = new MC_Rrd('file:///usr/local/rrdtool-1.2.19/bin/rrdtool');
 	    
         return $rrd;
 	}

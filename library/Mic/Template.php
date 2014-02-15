@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Template
+ * @category  MC
+ * @package   MC_Template
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -23,17 +23,17 @@
 trigger_error(basename(__FILE__) . " is deprecated", E_USER_WARNING);
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/String.php';
+require_once 'MC/String.php';
 
 /**
- * Mic_Template
+ * MC_Template
  *
- * @category  Mic
- * @package   Mic_Template
+ * @category  MC
+ * @package   MC_Template
  */
-class Mic_Template extends Mic_String
+class MC_Template extends MC_String
 {
     
     /**
@@ -46,8 +46,8 @@ class Mic_Template extends Mic_String
         if (file_exists($template)) {
             if (!is_readable($template)) {
                 //
-                require_once 'Mic/Template/Exception.php';
-                throw new Mic_Template_Exception("Failed to read file: $file");
+                require_once 'MC/Template/Exception.php';
+                throw new MC_Template_Exception("Failed to read file: $file");
             }
             
             $template = file_get_contents($template);
@@ -73,7 +73,7 @@ class Mic_Template extends Mic_String
      */
     public function replace($tag, $replacement=null, $limit=-1, &$count=null)
     {
-        if (!is_array($tag) && !$tag instanceof Mic_Array) {
+        if (!is_array($tag) && !$tag instanceof MC_Array) {
             return parent::replace($tag, $replacement, $limit, $count);
         }
         

@@ -19,8 +19,8 @@
  * @filesource
  */
  
-require_once dirname(__FILE__) . '/../../library/Mic.php';
-Mic::boot();
+require_once dirname(__FILE__) . '/../../library/MC.php';
+MC::boot();
 
 //
 define('CACTI_XPORT_SERVER', 'localhost');
@@ -402,7 +402,7 @@ function output_csv($data, $fields) {
             foreach ($fields as $field) {
                 $quoted[$field] = quote(@$row[$field]);
             }
-            echo Mic_Template2::process($row_template, $quoted) . "\n";
+            echo MC_Template2::process($row_template, $quoted) . "\n";
         }
     }
 }

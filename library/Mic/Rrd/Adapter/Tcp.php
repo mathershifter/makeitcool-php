@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.x
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Rrd
+ * @category  MC
+ * @package   MC_Rrd
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,26 +20,26 @@
  */
 
 /**
- * @see Mic_Rrd_Adapter_Abstract
+ * @see MC_Rrd_Adapter_Abstract
  */
-require_once 'Mic/Rrd/Adapter/Abstract.php';
+require_once 'MC/Rrd/Adapter/Abstract.php';
 
 /**
- * Mic_Rrd_Adapter_Tcp
+ * MC_Rrd_Adapter_Tcp
  *
  * Establishes a connection to an RRD server running on a remote system
  * 
- * @category   Mic
- * @package    Mic_Rrd
+ * @category   MC
+ * @package    MC_Rrd
  */
-class Mic_Rrd_Adapter_Tcp extends Mic_Rrd_Adapter_Abstract
+class MC_Rrd_Adapter_Tcp extends MC_Rrd_Adapter_Abstract
 {
     /**
      * TCP (rrdsrv) rrdtool adapter
      *
      * @param string $rrdtool tcp://<host>[:<port>]
      * @param array  $options
-     * @throws Mic_Rrd_Adapter_Exception
+     * @throws MC_Rrd_Adapter_Exception
      */
     public function open($rrdtool, $options=array())
     {   
@@ -53,8 +53,8 @@ class Mic_Rrd_Adapter_Tcp extends Mic_Rrd_Adapter_Abstract
             $errno, $errstr, $timeout);
         
         if (!$this->handle) {
-            require_once 'Mic/Rrd/Adapter/Exception.php';
-            throw new Mic_Rrd_Adapter_Exception("Failed while opening " .
+            require_once 'MC/Rrd/Adapter/Exception.php';
+            throw new MC_Rrd_Adapter_Exception("Failed while opening " .
                 "{$rrdtool->host}:$port - $errstr [$errno]");
         }
     }

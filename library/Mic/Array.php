@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Array
+ * @category  MC
+ * @package   MC_Array
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,17 +20,17 @@
  */
 
 /**
- * @see Mic_Object
+ * @see MC_Object
  */
-require_once 'Mic/Object.php';
+require_once 'MC/Object.php';
 
 /**
- * Mic_Array
+ * MC_Array
  *
- * @category  Mic
- * @package   Mic_Array
+ * @category  MC
+ * @package   MC_Array
  */
-class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
+class MC_Array extends MC_Object implements Countable, Iterator, ArrayAccess
 {
     /**
      * @var array
@@ -66,7 +66,7 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
          */
         $data = $this->_init($args);
         
-        // build the array recusively creating Mic_Array objects
+        // build the array recusively creating MC_Array objects
         foreach ($data as $key=>$value) {
             $this->offsetSet($key, $value);
         }
@@ -174,12 +174,12 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
     public static function convert($data) {
         
         if (is_object($data)) {
-            if ($data instanceof Mic_Array or is_subclass_of($data, 'Mic_Array')) {
+            if ($data instanceof MC_Array or is_subclass_of($data, 'MC_Array')) {
                 return $data;  
             }
-            return new Mic_Array((array) $data);
+            return new MC_Array((array) $data);
         } elseif (is_array($data)) {
-            return new Mic_Array($data);
+            return new MC_Array($data);
         } else {
             return $data;
         }
@@ -199,7 +199,7 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
      * Statically creates a new array object
      *
      * @param array $data
-     * @return Mic_Array
+     * @return MC_Array
      */
     public static function create($data=array())
     {
@@ -320,8 +320,8 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
             $data = new self(array($data));
         } elseif (is_array($data)) {
             $data = new self($data);
-        } elseif (!$data instanceof Mic_Array) {
-            throw new Mic_Array_Exception("Data must be an array, scalar, or Mic_Array.");            
+        } elseif (!$data instanceof MC_Array) {
+            throw new MC_Array_Exception("Data must be an array, scalar, or MC_Array.");            
         }
         
         if ($overwrite) {
@@ -415,7 +415,7 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
      * Merges an array into the array
      *
      * @param array $array
-     * @return Mic_Array
+     * @return MC_Array
      */
     public function merge($array=array())
     {
@@ -485,15 +485,15 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
     /**
      * Pops one or more values from the stack
      * 
-     * @throws Mic_Array_Exception
+     * @throws MC_Array_Exception
      * @param integer $count
      * @return mixed
      */
     public function pop()
     {
         if (empty($this->_data)) {
-            require_once 'Mic/Array/Exception.php';
-            throw new Mic_Array_Exception("Not enough elements for this " .
+            require_once 'MC/Array/Exception.php';
+            throw new MC_Array_Exception("Not enough elements for this " .
                                           "operation");
         }
         
@@ -526,7 +526,7 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
      * Reverse the collection. 
      *
      * @param boolean $preserveKeys
-     * @return Mic_Array
+     * @return MC_Array
      */
     public function reverse($preserveKeys=false)
     {
@@ -543,9 +543,9 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
 
         foreach ($this->_data as $index=>$row)
         {
-            if (!$row instanceof Mic_Array) {
-                require_once('Mic/Array/Exception.php');
-                throw new Mic_Array_Exception("Value at index '{$index}' " .
+            if (!$row instanceof MC_Array) {
+                require_once('MC/Array/Exception.php');
+                throw new MC_Array_Exception("Value at index '{$index}' " .
                 	                          "must be an array");
             }
             foreach ($row as $key=>$value)
@@ -603,7 +603,7 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
      * @param integer $offset
      * @param integer $length
      * @param mixed $replacement
-     * @return Mic_Array
+     * @return MC_Array
      */
     public function slice($offset, $length=null, $preserveKeys=false)
     {
@@ -621,7 +621,7 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
      * @param integer $offset
      * @param integer $length
      * @param mixed $replacement
-     * @return Mic_Array
+     * @return MC_Array
      */
     public function splice($offset, $length=null, $replacement=null)
     {
@@ -637,7 +637,7 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
      * Sorts the array using callback
      *
      * @param mixed $arg callback or sort flag
-     * @return Mic_Array
+     * @return MC_Array
      */
     public function sort($arg=SORT_REGULAR)
     {
@@ -687,13 +687,13 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
      * Sorts the array using callback
      *
      * @param mixed $arg callback function
-     * @return Mic_Array
+     * @return MC_Array
      */
     public function usort($callback)
     {
         if (!is_callable($callback)) {
-        	require_once 'Mic/Array/Exception.php';
-            throw new Mic_Array_Exception("Expected '$callback' to be " .
+        	require_once 'MC/Array/Exception.php';
+            throw new MC_Array_Exception("Expected '$callback' to be " .
             	                          "callable.");
         }
         
@@ -729,14 +729,14 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
     public function unshift($value)
     {
         array_unshift($this->_data,
-            is_array($value) ? new Mic_Array($value) : $value);
+            is_array($value) ? new MC_Array($value) : $value);
     }
     
     /**
      * XXX
      *
      * @param array $values
-     * @return Mic_Array
+     * @return MC_Array
      */
     public function zip($values=array())
     {
@@ -744,7 +744,7 @@ class Mic_Array extends Mic_Object implements Countable, Iterator, ArrayAccess
         $keys   = $this->values();
         
         if ($keys->count() !== $values->count()) {
-            throw new Mic_Array_Exception("Number of elements in keys and values
+            throw new MC_Array_Exception("Number of elements in keys and values
                 do not match");       
         }
         

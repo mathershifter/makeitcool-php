@@ -3,15 +3,15 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 foldmethod=marker: */
 
 /**
- * Mic PHP Framework
+ * MC PHP Framework
  *
  * PHP version 5.2+
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @category  Mic
- * @package   Mic_Proc
+ * @category  MC
+ * @package   MC_Proc
  * @author    Jesse R. Mather <jrmather@gmail.com>
  * @copyright 2009-2010 Nobody
  * @license   MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -20,12 +20,12 @@
  */
 
 /**
- * Mic_File_Stat
+ * MC_File_Stat
  *
- * @category  Mic
- * @package   Mic_File
+ * @category  MC
+ * @package   MC_File
  */
-class Mic_File_Stat extends Mic_Array
+class MC_File_Stat extends MC_Array
 {
     public function _init($args)
     {
@@ -34,10 +34,10 @@ class Mic_File_Stat extends Mic_Array
         
         if (is_resource($file)) {
             $stat = fstat($file);
-        } elseif (Mic_File::exists($file)) {
+        } elseif (MC_File::exists($file)) {
             $stat = array_slice(stat($file), 13);
         } else {
-            throw new Mic_File_Exception("File '$file' is not valid.");
+            throw new MC_File_Exception("File '$file' is not valid.");
         }
         
         return $stat;
